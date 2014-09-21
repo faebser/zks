@@ -1,0 +1,698 @@
+/*The font softwares linked herebelow are theproperty of Swiss Typefaces Sàrl.You may not download the font softwares.Purchase and licensing informations areavailable at http://www.swisstypefaces.com/licensing/Copyright (C) Swiss Typefaces Sàrl*/
+@font-face {
+    font-family: 'suisse';
+    src: url('fonts/SuisseIntl-SemiBold-WebXL.eot?#iefix') format('embedded-opentype'),
+         url('fonts/SuisseIntl-SemiBold-WebXL.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'suisse';
+    src: url('fonts/SuisseIntl-SemiBoldItalic-WebXL.eot?#iefix') format('embedded-opentype'),
+         url('fonts/SuisseIntl-SemiBoldItalic-WebXL.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'suisse-mono';
+    src: url('fonts/SuisseIntlMono-Regular-WebXL.eot?#iefix') format('embedded-opentype'),
+         url('fonts/SuisseIntlMono-Regular-WebXL.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'suisse-works';
+    src: url('fonts/SuisseWorks-Book-WebXL.eot?#iefix') format('embedded-opentype'),
+         url('fonts/SuisseWorks-Book-WebXL.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'suisse-works';
+    src: url('fonts/SuisseWorks-BookItalic-WebXL.eot?#iefix') format('embedded-opentype'),
+         url('fonts/SuisseWorks-BookItalic-WebXL.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+/*@font-face {
+    font-family: 'suisse-works';
+    src: url('fonts/SuisseWorks-Medium-WebTrial.eot?#iefix') format('embedded-opentype'),
+         url('fonts/SuisseWorks-Medium-WebTrial.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}*/
+/*	Evt. Medium Schnitt */
+
+@font-face {
+    font-family: 'suisse-works';
+    src: url('fonts/SuisseWorks-Book-WebXL.eot?#iefix') format('embedded-opentype'),
+         url('fonts/SuisseWorks-Book-WebXL.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+
+body {
+	padding: 0;
+	margin: 0;
+	font: normal 1em/1.43 'suisse-works', Times, serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	overflow-x: hidden;
+	letter-spacing: 0.01em;
+}
+
+
+a {
+	color: inherit;
+	text-decoration: none;
+	position: relative
+}
+
+a:hover {
+	color: #0000ff;
+}
+
+i, em {
+
+}
+
+
+h1,h2,h3,p {
+	font-size: inherit;
+	margin-top: 0;
+}
+
+h1,h2,h3 {
+	font-weight: normal;
+}
+h2 {
+	font-size: 3em;
+	margin-bottom: 1em;
+	font-family: 'suisse', sans-serif;
+	line-height: 1;
+}
+
+h3 {
+
+}
+
+address {
+	font-style: normal;
+	margin-top: 1em;
+}
+
+
+/*
+	Layout
+------------------------
+*/
+
+div, nav, header, footer, article, aside, section, blockquote, cite, ul, ul * {
+	box-sizing: border-box;
+}
+
+#page {
+	width: 950px;
+	margin: 0 auto;
+}
+
+#header {
+	font-family: 'suisse', sans-serif;
+	margin-top: 43px;
+	position: relative;
+	padding-left: 214px;
+	margin-bottom: 73px;
+}
+
+
+h1 {
+	font-size: 0.95em;
+	font-family: inherit;
+	text-transform: uppercase;
+	display: inline-block;
+	margin: 22px 0 0 -214px;
+	float: left;
+	vertical-align: top;
+}
+
+h1 a {
+	padding: 0 0 0 26px;
+	display: inline-block;
+	line-height: 1;
+}
+
+div#content {
+	width: 710px;
+	margin-left: 26px;
+	margin-bottom: 100px;
+	float: left;
+	position: relative;
+	z-index: -1;
+}
+
+.blog-item,
+.detail {
+	padding-top: 20px;
+	margin-bottom: 50px;
+	clear: both;
+	position: relative;
+}
+
+.blog-item:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.info {
+	margin-top: -28px;
+	font-family: 'suisse', sans-serif;
+	font-size: 1.15em;
+}
+
+.detail .info {
+	margin-left: 188px;	
+}
+
+.blog-item .teaser-title,
+.detail .teaser-title {
+	position: relative;
+	margin-left: 183px;
+	padding-left: 5px;
+	padding-right: 25px;
+	border-top: 4px ridge #ccc;
+	border-right: 4px ridge #ccc;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+}
+
+.detail .teaser-title {
+	margin-left: 0;	
+	padding-left: 0;
+}
+
+.blog-item .teaser-title:before {
+	border: 4px ridge #ccc;
+	content: " ";
+	width: 183px;
+	height: 100%;
+	position: absolute;
+	top: -25px;
+	left: -191px;
+	padding: 0 0 61px 0;
+}
+
+.blog-item.bgimg .teaser-title:before {
+	background: url("img/synthfest.jpg") no-repeat center center;
+}
+
+.blog-item.bgimg2 .teaser-title:before {
+	background: url("img/terre2.jpg") no-repeat center center;
+}
+
+
+.blog-item.bgimg .lead p:first-child:first-letter,
+.blog-item.bgimg2 .lead p:first-child:first-letter {
+	color: #fff
+} 
+
+.teaser-title h2 {
+	margin-bottom:0;
+	padding-bottom: 15px;
+	padding-top: 25px;
+}
+
+.lead {
+	font-size: 1.125em;
+	position: relative;
+	border-right: 4px ridge #ccc;
+	padding-right: 25px;
+	padding-bottom: 2px;
+	font-weight: bold;
+}
+
+.blog-item.hasimg .lead {
+	padding-bottom: 100px;
+}
+
+.lead p {
+	margin-bottom: 7px;
+}
+
+.blog-item .lead>*:first-child:first-letter,
+.article-content>*:first-child:first-letter {
+	padding-left: 188px;
+	margin: 7px 188px 15px -188px;
+	letter-spacing: -1em;
+	line-height: 10px;
+	float: left;
+	box-sizing: border-box;
+}
+
+.article-content>*:first-child:first-letter {
+	margin: 3px 188px 15px -188px;
+	font-size: 1.5em;
+}
+
+.blog-item .img {
+	float: left;
+	margin-left: 188px;
+	width: 495px;
+}
+
+.blog-item .img img {
+	max-width: 100%;
+	max-height: 495px;
+}
+
+.taglist {
+	border: 4px ridge #ccc;
+	font-family: 'suisse', sans-serif;
+	font-size: 1.15em;
+	max-width: 470px;
+	float: right;
+	margin-bottom: 15px
+}
+
+.taglist div {
+	padding: 3px 7px;
+	background-color: #fff;
+}
+
+.blog-item.hasimg .taglist {
+	position: absolute;
+	float: none;
+	right: 0;
+}
+
+.article-wrapper {
+	float: left;
+}
+
+
+/*		Detail */
+
+.article-content {
+	margin-top: 60px;
+	position: relative;
+	padding-right: 25px;
+	clear: both;
+}
+
+.article-content:before {
+	border: 4px ridge #ccc;
+	border-top: 0 none;
+	content: " ";
+	width: 191px;
+	height: 130px;
+	position: absolute;
+	top: -91px;
+	left: -8px;
+	box-sizing: border-box;
+}
+
+.initial:before {
+	box-sizing: border-box;
+	display: inline-block;
+	border: 4px ridge #ccc;
+	border-bottom: 0 none;
+	content: " ";
+	width: 191px;
+	height: 100px;
+	float: left;
+	margin-left: -8px;
+	margin-right: 5px;
+	margin-top: 3px;	
+}
+
+.interview {
+	text-indent: 94px;
+}
+
+blockquote {
+	width: 460px;
+	border-top: 4px ridge #ccc;
+	border-right: 4px ridge #ccc;
+	padding: 5px 10px 0 5px;
+	margin: 3px 5px 0 -5px;
+	float: left;
+	font-family: 'suisse', sans-serif;
+	font-size: 1.45em;
+	line-height: 1.07;
+}
+
+blockquote * {
+	margin-bottom: 3px;
+}
+
+cite {
+	border: 4px ridge #ccc;
+	float: right;
+	margin: 0 -14px 0 0;
+	font-size: 0.82em;
+	padding: 3px 7px;
+	font-style: normal;
+}
+
+blockquote+.interview {
+	text-indent: 0;
+}
+
+sup, .anmerkung, .footnotes {
+	top: 0;
+	font-size: 80%;
+	font-family: 'suisse-mono', sans-serif;
+	margin-left: 1px;
+}
+
+.anmerkung {
+	
+}
+
+.footnotes {
+	margin-top: 2.8em;
+	letter-spacing: 0;
+	margin-left: 0;
+}
+.footnotes ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.footnotes li {
+	margin-left: 94px;
+}
+
+.footnotes .nr {
+	margin-left: -94px;
+	width: 94px;
+	display: inline-block;
+}
+
+
+
+
+/*
+	Sidebar
+------------------------
+*/
+
+#sidebar {
+	width: 188px;
+	float: left;
+	margin-top: -4px;
+	margin-right: -214px;
+	margin-left: 26px;
+}
+
+#sidebar.sidebar-detail {
+	margin-top: 0;
+}
+
+.sidebar-item {
+	margin-bottom: 25px;
+}
+
+.sidebar-item h3 {
+	font-family: 'suisse', sans-serif;
+	font-size: 1.15em;
+	margin: 0 0 -1px;
+}
+
+.sidebar-content {
+	border-right: 4px ridge #ccc;
+	border-top: 4px ridge #ccc;
+}
+
+.ausgabe .sidebar-content {
+	height: 310px
+}
+
+.ausgabe-bild {
+	height: 260px;
+	overflow: hidden;
+	margin-top: -310px;
+}
+
+.ausgabe .cover {
+	display: inline-block;
+	position: relative;
+	right: -50%;
+}
+
+.ausgabe .cover img {
+	left: 50%;
+	margin-left: -100%;
+	height: 260px;
+	position: relative;
+	z-index: -1;
+}
+
+:focus {outline:none;}
+
+.ausgabe button {
+	width: 100%;
+	box-sizing: border-box;
+	font-family: 'suisse', sans-serif;
+	font-size: 1.15em;
+	margin-top: 260px;
+	height: 50px;
+	line-height: 35px;
+	cursor: pointer;
+	background-color: #d1d1d1;
+	border: 6px outset #c1c1c1;
+	width: 188px;
+}
+
+.ausgabe button:hover {
+
+}
+
+.ausgabe button:active {
+	line-height: 38px;
+	border: 6px inset #c1c1c1;
+}
+
+.ausgabe button:hover+.ausgabe-bild{
+	overflow: visible;
+}
+
+.add {
+	text-align: right;
+}
+
+.add .sidebar-content img{
+	display: block;
+	float: right
+}
+
+.add .sidebar-content:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.sidebar-item .tag {
+	border: 4px ridge #ccc;
+	font-family: 'suisse', sans-serif;
+	font-size: 1.15em;
+	padding: 3px 7px;
+	display: inline-block;
+}
+
+.link-list .sidebar-content ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.link-list .sidebar-content li {
+	border-bottom: 3px ridge #ccc;
+}
+	
+.link-list .sidebar-content li:last-child {
+	border-bottom: 0 none;
+}
+
+.link-list .sidebar-content li a {
+	padding: 3px 7px;
+	display: block;
+	background-color: #f5f5f5;
+}
+
+.link-list .sidebar-content li a:hover {
+	background-color: #00ff00;
+	color: inherit;
+}
+
+/*
+	Suche
+------------------------
+*/
+
+#search input {
+	background: none;
+	width: 100%;
+	box-sizing: border-box;
+	height: 26px;
+	border: 0 none;
+	font: inherit;
+	padding: 3px 7px 0;
+}
+
+#search input:focus {
+	background-color: #fafafa !important;
+}
+
+
+.tt-dropdown-menu {
+	width: 100%;
+	margin-top: 4px;
+	display: block !important;
+} 
+
+.tt-hint {
+	color: #999;
+} 
+
+.tt-suggestion {
+	padding: 3px 7px;
+	background-color: #f5f5f5;
+}
+.tt-suggestion p {
+	margin: 0;
+}
+
+.tt-suggestion:nth-child(odd) {
+	-webkit-transform: skew(-10deg); 
+	-moz-transform: skew(-10deg); 
+	-o-transform: skew(-10deg); 
+	-ms-transform: skew(-10deg); 
+	transform: skew(-10deg);
+	-webkit-transform-origin: right top;
+	-moz-transform-origin: right top;
+	-ms-transform-origin: right top;
+	transform-origin: right top;
+}
+
+.tt-suggestion:nth-child(even) {
+	background-color: #eaeaea;
+	-webkit-transform: skew(10deg); 
+	-moz-transform: skew(10deg); 
+	-o-transform: skew(10deg); 
+	-ms-transform: skew(10deg); 
+	transform: skew(10deg);
+	-webkit-transform-origin: left bottom;
+	-moz-transform-origin: left bottom;
+	-ms-transform-origin: left bottom;
+	transform-origin: left bottom;
+}
+
+.tt-suggestion.tt-cursor {
+	background-color: #00ff00;
+	cursor: pointer;
+}
+
+
+/*
+	Navigation
+------------------------
+*/
+
+#meta {
+	float: right;
+	width: 184px;
+	border-left: 3px ridge #ccc;
+	height: 54px;
+	font-size: 0.95em;
+}
+
+#lang {
+	border-bottom: 3px ridge #ccc;
+	height: 28px;
+	padding-top: 3px;
+	padding-left: 7px;
+}
+
+#lang a {
+}
+
+#nav {
+	position: relative;
+	border: 4px ridge #ccc;
+	width: 736px;
+	height: 62px;
+}
+
+#nav:before {
+	content: "";
+	background-color: #f5f5f5;
+	position: absolute;
+	width: 736px;
+	height: 62px;
+	top: -4px;
+	left: -4px;
+	z-index: -1;
+}
+
+#nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 1.15em;
+}
+#nav ul li {
+	text-transform:uppercase;
+	margin: 0;
+	float: left;
+	border-right: 3px ridge #ccc;
+}
+
+nav ul a {
+	padding: 0 20px;
+	display: inline-block;
+	line-height: 56px;
+	height: 54px;
+}
+
+
+nav ul li ul a{
+	padding: 2px 20px 0;
+}
+
+nav ul .active, nav ul a:hover {
+	color: #000;
+	background-color: #00ff00;
+}
+
+
+@media only screen and (max-width:1000px){
+
+
+
+}
+
+@media only screen and (max-width:750px){
+
+
+
+}
+
