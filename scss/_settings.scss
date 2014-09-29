@@ -1,0 +1,11 @@
+// import gridle
+@import "gridle/gridle";
+
+// setting up the grid
+@include gridle_setup( (
+	context: 5,
+	gutter-width: 20px,
+	direction: rtl,
+	debug: true
+) );
+
