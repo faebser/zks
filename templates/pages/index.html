@@ -42,7 +42,7 @@
 	</header>
 	<div id="content" role="main">
         {% block content %}
-        {% endblock content %}
+        {% placeholder blog %}
 		<article class="blog-item hasimg">
 			<header class="teaser-title">
 				<div class="info">17.08.2014 von <a href="#">Remo Bitzi</a>, <a href="#">Marc Schwegler</a></div>
@@ -82,6 +82,7 @@ Jahrhunderts entwickelten Paartanzes Walzer wurde vom mittelhochdeutschen Wort Â
 </div>			
 			<div class="taglist"><div><a href="#">Events</a>, <a href="#">Cabaret Voltaire</a>, <a href="#">Interview</a></div></div>
 		</article>
+        {% endblock content %}
 	</div>
 	<aside id="sidebar">
 		<section class="sidebar-item ausgabe">

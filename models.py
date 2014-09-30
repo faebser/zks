@@ -14,6 +14,18 @@ import datetime
 
 class ArticleTags(models.Model):
     name = models.CharField(max_length=256, verbose_name=u'Name')
+    url = models.CharField(max_length=1024, verbose_name=u'Url', default=' ')
+
+    def save(self, *args, **kwargs):
+        if self.url == ' ':
+            self.url = self.name.lower()
+        super(ArticleTags, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = u'Blog Tag'
+
+    def __unicode__(self):
+        return self.name
 
 
 class ArticleCategory(models.Model):
@@ -26,7 +38,8 @@ class ArticleIntro(CMSPlugin):
     date = models.DateField(verbose_name=u'Datum', default=datetime.datetime.now())
     lead = HTMLField(verbose_name=u'Lead')
     tags = models.ManyToManyField(ArticleTags, verbose_name=u'Schlagworte')
-    categories = models.ManyToManyField(ArticleCategory, verbose_name=u'Kategorie')
+    picBig = models.ImageField(upload_to=CMSPlugin.get_media_path, verbose_name=u'unteres Bild', blank=True, null=True)
+    picTop = models.ImageField(upload_to=CMSPlugin.get_media_path, verbose_name=u'Bild oben, im Kasten', blank=True, null=True)
 
     class Meta:
         verbose_name = u'Article'
