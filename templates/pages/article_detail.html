@@ -43,6 +43,22 @@
 	</header>
 	<div id="content" role="main">
     {% block content %}
+        <article class="detail">
+        {% placeholder intro %}
+            <div class="article-content">
+                {% placeholder content %}
+                <div class="footnotes">
+                    {% placeholder footnotes %}
+                </div>
+            </div>
+        </div> <!-- closing of article-wrapper inside of intro !-->
+        <aside id="sidebar" class="sidebar-detail">
+            {% placeholder internal-links %}
+            {% placeholder external-links %}
+            {% placeholder ads %}
+        </aside>
+        </article>
+    {% endblock content %}
 		<article class="detail">
 			<header class="teaser-title">
 				<div class="info">17.08.2014 von Remo Bitzi, Marc Schwegler</div>
@@ -125,7 +141,7 @@ Jahrhunderts entwickelten Paartanzes Walzer wurde vom mittelhochdeutschen Wort Â
 			</aside>
 
 		</article>
-        {% endblock content %}
+
 	</div>
 
 </div>

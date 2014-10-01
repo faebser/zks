@@ -3,7 +3,7 @@
         <div class="info">{{ instance.date | date:"d.m.Y" }} von
             {% for user in instance.author.all %}
                 {% if user.last_name and user.first_name %}
-                <a href="author/{{ user.first_name | lower }}{{user.last_name | lower }}">
+                <a href="{[ url 'author' user.last_name user.first_name ]}">
                     {{ user.first_name }} {{ user.last_name }}
                 </a>
                 {% else %}
@@ -19,9 +19,8 @@
     {% endif %}
     </div>
     <div class="taglist">
-        {% for tag in tags %}
-            <a href="#">Magazin</a>
+        {% for tag in instance.tags.all %}
+            <a href="{[ url 'tag' tag.name ]}">{{ tag.name }}</a>
         {% endfor %}
-        <div><a href="#">Magazin</a>, <a href="#">ZKS#7</a>, <a href="#">Darkstar</a>, <a href="#">Interview</a></div>
     </div>
 </article>

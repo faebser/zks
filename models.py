@@ -12,14 +12,15 @@ from django.utils.html import strip_tags
 import datetime
 
 
+def replace_all(text, removables):
+    for i, j in removables.iteritems():
+        text = text.replace(i, j)
+    return text
+
+
 class ArticleTags(models.Model):
     name = models.CharField(max_length=256, verbose_name=u'Name')
-    url = models.CharField(max_length=1024, verbose_name=u'Url', default=' ')
-
-    def save(self, *args, **kwargs):
-        if self.url == ' ':
-            self.url = self.name.lower()
-        super(ArticleTags, self).save(*args, **kwargs)
+    url = models.CharField(max_length=1024, verbose_name=u'Url', default=' ', editable=False)
 
     class Meta:
         verbose_name = u'Blog Tag'
