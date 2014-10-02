@@ -1,0 +1,25 @@
+<header class="teaser-title">
+    <div class="info">{{ instance.date | date:"d.m.Y" }} von
+        {% for user in instance.author.all %}
+            {% if user.last_name and user.first_name %}
+            <a href="{[ url 'author' user.last_name user.first_name ]}">
+                {{ user.first_name }} {{ user.last_name }}
+            </a>
+            {% else %}
+            <a href="author/{{ user.username}}">{{ user.username }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <h2>{{ instance.title }}</h2>
+</header>
+<div class="article-wrapper">
+    <div class="lead">{{ instance.lead | safe }}
+    {% if instance.picBig %}
+        <div class="img"><img src="{{ instance.picBig.url }}" alt=""></div>
+    {% endif %}
+    </div>
+    <div class="taglist">
+        {% for tag in instance.tags.all %}
+            <a href="{[ url 'tag' tag.name ]}">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
