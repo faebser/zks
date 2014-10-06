@@ -1,0 +1,28 @@
+{% for article in articles %}
+    <article class="blog-item hasimg">
+        <header class="teaser-title">
+            <div class="info">{{ article.date | date:"d.m.Y" }} von
+                {% for user in article.author.all %}
+                    {% if user.last_name and user.first_name %}
+                    <a href="{[ url 'author' user.last_name user.first_name ]}">
+                        {{ user.first_name }} {{ user.last_name }}
+                    </a>
+                    {% else %}
+                    <a href="author/{{ user.username}}">{{ user.username }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <h2><a href="{{ article.page.get_absolute_url }}" title="{{ article.title }}">{{ article.title }}</a></h2>
+        </header>
+        <div class="lead">{{ article.lead | safe }}
+        {% if article.picBig %}
+            <div class="img"><img src="{{ instance.picBig.url }}" alt=""></div>
+        {% endif %}
+        </div>
+        <div class="taglist">
+            {% for tag in article.tags.all %}
+                <a href="{[ url 'tag' tag.name ]}">{{ tag.name }}</a>
+            {% endfor %}
+        </div>
+    </article>
+{% endfor %}

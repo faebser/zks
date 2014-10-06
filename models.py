@@ -46,7 +46,12 @@ class ArticleIntro(CMSPlugin):
         verbose_name = u'Article'
 
     def __unicode__(self):
-        return Truncator(strip_tags(self.lead)).words(5, truncate='...')
+        #Truncator(strip_tags(self.lead)).words(5, truncate='...')
+        return "titel: " + unicode(self.title) + " date:" + unicode(self.date) + " lead: " + Truncator(strip_tags(self.lead)).words(5, truncate='...')
+
+    def copy_relations(self, old_instance):
+        self.author = old_instance.author.all()
+        self.tags = old_instance.tags.all()
 
 
 class ExternalLinkBox(CMSPlugin):
@@ -103,4 +108,8 @@ class Ad(CMSPlugin):
 
 class Box(CMSPlugin):
     title = models.CharField(max_length=512, verbose_name=u'Titel')
+
+
+class BlogListWithPagination(CMSPlugin):
+    amount = models.IntegerField(verbose_name=u'Anzahl', default=5)
 
