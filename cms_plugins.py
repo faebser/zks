@@ -40,17 +40,22 @@ class BlogListWithPaginationPlugin(CMSPluginBase):
         context['placeholder'] = placeholder
         parameter = context['request'].GET.get('pagination', None)
         objects = None
+        get_parameter = None
+        # see https://plus.google.com/118309212962987618554/posts/Nc8xQPN9yFy
+        # to exclude plugins from list
         if parameter is None:
-            objects = ArticleIntro.objects.all().exclude(isPublic=False).order_by('date')[:instance.amount]
+            objects = ArticleIntro.objects.all().exclude(placeholder__page__publisher_is_draft=False).order_by('date')[:instance.amount]
         else:
-            queryset = ArticleIntro.objects.all().exclude(isPublic=False).order_by('date')
+            queryset = ArticleIntro.objects.all().exclude(placeholder__page__publisher_is_draft=False).order_by('date')
             for index, item in enumerate(queryset):
                 if item.pk == parameter:
                     # found item
+                    get_parameter = item.pk
                     objects = queryset[index+1:index+1+instance.amount]
                     break
         context.update({
-            'articles': objects
+            'articles': objects,
+            'pagination': get_parameter
         })
 
         return context

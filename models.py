@@ -52,8 +52,6 @@ class ArticleIntro(CMSPlugin):
     def copy_relations(self, old_instance):
         self.author = old_instance.author.all()
         self.tags = old_instance.tags.all()
-        self.isPublic = True
-        self.save()
 
 
 class ExternalLinkBox(CMSPlugin):
