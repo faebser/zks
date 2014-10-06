@@ -41,9 +41,9 @@ class BlogListWithPaginationPlugin(CMSPluginBase):
         parameter = context['request'].GET.get('pagination', None)
         objects = None
         if parameter is None:
-            objects = ArticleIntro.objects.all().order_by('date')[:instance.amount]
+            objects = ArticleIntro.objects.all().exclude(isPublic=False).order_by('date')[:instance.amount]
         else:
-            queryset = ArticleIntro.objects.all().order_by('date')
+            queryset = ArticleIntro.objects.all().exclude(isPublic=False).order_by('date')
             for index, item in enumerate(queryset):
                 if item.pk == parameter:
                     # found item

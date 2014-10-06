@@ -41,16 +41,19 @@ class ArticleIntro(CMSPlugin):
     tags = models.ManyToManyField(ArticleTags, verbose_name=u'Schlagworte')
     picBig = models.ImageField(upload_to=CMSPlugin.get_media_path, verbose_name=u'unteres Bild', blank=True, null=True)
     picTop = models.ImageField(upload_to=CMSPlugin.get_media_path, verbose_name=u'Bild oben, im Kasten', blank=True, null=True)
+    isPublic = models.BooleanField(editable=False, default=False)
 
     class Meta:
         verbose_name = u'Article'
 
     def __unicode__(self):
-        return unicode(self.date) + " " + Truncator(strip_tags(self.lead)).words(5, truncate='...')
+        return unicode(self.isPublic) + " " + unicode(self.date) + " " + Truncator(strip_tags(self.lead)).words(5, truncate='...')
 
     def copy_relations(self, old_instance):
         self.author = old_instance.author.all()
         self.tags = old_instance.tags.all()
+        self.isPublic = True
+        self.save()
 
 
 class ExternalLinkBox(CMSPlugin):
