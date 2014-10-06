@@ -23,7 +23,7 @@ ps = PluginSettings()
 class ArticleIntroPlugin(CMSPluginBase):
     model = ArticleIntro
     module = ps.module
-    render_template = path.join(ps.templatePath, 'article_intro.html')
+    render_template = path.join(ps.templatePath, 'article_header.html')
     name = _(u'Blog Intro')
 
 plugin_pool.register_plugin(ArticleIntroPlugin)

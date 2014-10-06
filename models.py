@@ -46,8 +46,7 @@ class ArticleIntro(CMSPlugin):
         verbose_name = u'Article'
 
     def __unicode__(self):
-        #Truncator(strip_tags(self.lead)).words(5, truncate='...')
-        return "titel: " + unicode(self.title) + " date:" + unicode(self.date) + " lead: " + Truncator(strip_tags(self.lead)).words(5, truncate='...')
+        return unicode(self.date) + " " + Truncator(strip_tags(self.lead)).words(5, truncate='...')
 
     def copy_relations(self, old_instance):
         self.author = old_instance.author.all()
