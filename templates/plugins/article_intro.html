@@ -1,4 +1,4 @@
-<article class="blog-item hasimg">
+<article class="blog-item {% if instance.picBig %}hasimg{% endif %}">
     <header class="teaser-title">
         <div class="info">{{ instance.date | date:"d.m.Y" }} von
             {% for user in instance.author.all %}
