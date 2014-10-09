@@ -30,6 +30,7 @@ plugin_pool.register_plugin(ArticleIntroPlugin)
 
 
 class BlogListWithPaginationPlugin(CMSPluginBase):
+    cache = False
     model = BlogListWithPagination
     module = ps.module
     render_template = path.join(ps.templatePath, 'article_list.html')
@@ -45,13 +46,14 @@ class BlogListWithPaginationPlugin(CMSPluginBase):
         # to exclude plugins from list
         if parameter is None:
             objects = ArticleIntro.objects.all().exclude(placeholder__page__publisher_is_draft=False).order_by('date')[:instance.amount]
+            get_parameter = objects.last().pk
         else:
             queryset = ArticleIntro.objects.all().exclude(placeholder__page__publisher_is_draft=False).order_by('date')
             for index, item in enumerate(queryset):
                 if item.pk == parameter:
                     # found item
                     get_parameter = item.pk
-                    objects = queryset[index+1:index+1+instance.amount]
+                    objects = queryset[index + 1:index + 1 + instance.amount]  # return objects from pagination
                     break
         context.update({
             'articles': objects,
