@@ -9,6 +9,7 @@ from djangocms_text_ckeditor.cms_plugins import TextPlugin
 from django.core.urlresolvers import reverse
 from models import *
 from os import path
+from author_and_tags.views import pagination
 from models import ArticleCategory, ArticleTags, ArticleIntro, ExternalLink, ExternalLinkBox, InternalLink, \
     InternalLinkBox, Ad, Box, BlogListWithPagination
 
@@ -42,19 +43,11 @@ class BlogListWithPaginationPlugin(CMSPluginBase):
         parameter = context['request'].GET.get('pagination', None)
         objects = None
         get_parameter = None
+
         # see https://plus.google.com/118309212962987618554/posts/Nc8xQPN9yFy
         # to exclude plugins from list
-        if parameter is None:
-            objects = ArticleIntro.objects.all().exclude(placeholder__page__publisher_is_draft=False).order_by('date')[:instance.amount]
-            get_parameter = objects.last().pk
-        else:
-            queryset = ArticleIntro.objects.all().exclude(placeholder__page__publisher_is_draft=False).order_by('date')
-            for index, item in enumerate(queryset):
-                if item.pk == parameter:
-                    # found item
-                    get_parameter = item.pk
-                    objects = queryset[index + 1:index + 1 + instance.amount]  # return objects from pagination
-                    break
+        objects = ArticleIntro.objects.all().exclude(placeholder__page__publisher_is_draft=False).order_by('date')
+        objects, get_parameter = pagination(objects, parameter, instance.amount)
         context.update({
             'articles': objects,
             'pagination': get_parameter

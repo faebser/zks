@@ -4,7 +4,7 @@
             <div class="info">{{ article.date | date:"d.m.Y" }} von
                 {% for user in article.author.all %}
                     {% if user.last_name and user.first_name %}
-                    <a href="{[ url 'person' user.last_name user.first_name ]}">
+                    <a href="{% url 'person' user.first_name|lower user.last_name|lower %}">
                         {{ user.first_name }} {{ user.last_name }}
                     </a>
                     {% else %}
@@ -21,7 +21,7 @@
         </div>
         <div class="taglist">
             {% for tag in article.tags.all %}
-                <a href="{[ url 'tag' tag.name ]}">{{ tag.name }}</a>
+                <a href="{% url 'tag' tag.name|lower %}">{{ tag.name }}</a>
             {% endfor %}
         </div>
     </article>
