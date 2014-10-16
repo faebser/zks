@@ -6,6 +6,20 @@
 <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">-->
 	<link rel="stylesheet" type="text/css" media="screen" href="normalize.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="screen.css">
+	<style>
+		.blog-item.bgimg .teaser-title:before {
+			background: url("img/synthfest.jpg") no-repeat center center;
+		}
+		
+		.blog-item.bgimg2 .teaser-title:before {
+			background: url("img/terre2.jpg") no-repeat center center;
+		}
+		
+		.blog-item.bgimg .lead p:first-child:first-letter,
+		.blog-item.bgimg2 .lead p:first-child:first-letter {
+			color: #fff
+		} 
+	</style>
 	<!--[if lt IE 9]>
 	<style>
 		.blog-item .lead > *:first-child:first-letter,
@@ -38,8 +52,8 @@
 			</ul>
 		</nav>
 	</header>
-	<div id="content" role="main">
-		<article class="blog-item hasimg">
+	<div id="content" role="main" class="blog">
+		<article class="blog-item onecol hasimg">
 			<header class="teaser-title">
 				<div class="info">17.08.2014 von <a href="#">Remo Bitzi</a>, <a href="#">Marc Schwegler</a></div>
 				<h2><a href="blog-detail.html" title="Darkstar – Von Drehorgeln und Hügeln">Darkstar – Von Drehorgeln und Hügeln</a></h2>
@@ -49,7 +63,7 @@
 			</div>			
 			<div class="taglist"><div><a href="#">Magazin</a>, <a href="#">ZKS#7</a>, <a href="#">Darkstar</a>, <a href="#">Interview</a></div></div>
 		</article>
-		<article class="blog-item">
+		<article class="blog-item onecol">
 			<header class="teaser-title">
 				<div class="info">14.08.2014 von Remo Bitzi</div>
 				<h2>Komposition O08 von Martina Lussi</h2>
@@ -58,7 +72,7 @@
 			</div>
 			<div class="taglist"><div><a href="#">Präsens Editionen</a>, <a href="#">High-End-Stuff</a>, <a href="#">OMG!!</a>, <a href="#">Record Stuff</a></div></div>
 		</article>
-		<article class="blog-item hasimg bgimg2">
+		<article class="blog-item onecol hasimg bgimg2">
 			<header class="teaser-title">
 				<div class="info">15.08.2014 von Remo Bitzi</div>
 				<h2>Comedy à la Terre Thaemlitz</h2>
@@ -68,7 +82,7 @@
 </div>			
 			<div class="taglist"><div><a href="#">Magazin</a>, <a href="#">ZKS #7</a>, <a href="#">CTM</a>, <a href="#">Strange</a></div></div>
 		</article>
-		<article class="blog-item bgimg">
+		<article class="blog-item onecol bgimg">
 			<header class="teaser-title">
 				<div class="info">12.08.2014 von Samuel Savenberg</div>
 				<h2> A-SYNTH FEST 2014 </h2>
@@ -77,6 +91,52 @@
 </div>			
 			<div class="taglist"><div><a href="#">Events</a>, <a href="#">Cabaret Voltaire</a>, <a href="#">Interview</a></div></div>
 		</article>
+		<!-- end onecol -->
+		
+		<!-- twocol -->
+		<article class="blog-item twocol">
+			<header class="teaser-title">
+				<div class="info">12.08.2014 von Remo Bitzi</div>
+				<h2>Entourage in Lausanne</h2>
+			</header>
+			<div class="img"><img src="img/twocol1.jpg" alt=""></div>
+			<div class="lead"><p>Think Tank kehrt um eine neue Ausgabe der Reihe Entourage durchzuführen ins Le Romandie zurück.</p>
+</div>			
+			<div class="taglist"><div><a href="#">Events</a>, <a href="#">Lausanne</a>, <a href="#">Think Tank</a></div></div>
+		</article>
+
+		<article class="blog-item twocol">
+			<header class="teaser-title">
+				<div class="info">12.08.2014 von Samuel Savenberg</div>
+				<h2> A-SYNTH FEST 2014 </h2>
+			</header>
+			<div class="lead"><p>Dafür eingeladen wurden mitunter Wrangler (ein neues Projekt von Cabaret Voltaires Stephen Mallinder, Benge von John Foxx and the Maths sowie Tunngs Phil Winter), The Space Lady, Stellar OM Source, Papiro & Stu, Klangforscher und Can Love Be Synth?</p>
+</div>			
+			<div class="taglist"><div><a href="#">Events</a>, <a href="#">Cabaret Voltaire</a>, <a href="#">Interview</a></div></div>
+		</article>
+
+		<article class="blog-item twocol">
+			<header class="teaser-title">
+				<div class="info">12.08.2014 von Remo Bitzi</div>
+				<h2>Entourage in Lausanne</h2>
+			</header>
+			<div class="img"><img src="img/twocol1.jpg" alt=""></div>
+			<div class="lead"><p>Think Tank kehrt um eine neue Ausgabe der Reihe Entourage durchzuführen ins Le Romandie zurück.</p>
+</div>			
+			<div class="taglist"><div><a href="#">Events</a>, <a href="#">Lausanne</a>, <a href="#">Think Tank</a></div></div>
+		</article>
+
+		<article class="blog-item twocol">
+			<header class="teaser-title">
+				<div class="info">12.08.2014 von Samuel Savenberg</div>
+				<h2> A-SYNTH FEST 2014 </h2>
+			</header>
+			<div class="lead"><p>Dafür eingeladen wurden mitunter Wrangler (ein neues Projekt von Cabaret Voltaires Stephen Mallinder, Benge von John Foxx and the Maths sowie Tunngs Phil Winter), The Space Lady, Stellar OM Source, Papiro & Stu, Klangforscher und Can Love Be Synth?</p>
+</div>			
+			<div class="taglist"><div><a href="#">Events</a>, <a href="#">Cabaret Voltaire</a>, <a href="#">Interview</a></div></div>
+		</article>
+
+
 	</div>
 	<aside id="sidebar">
 		<section class="sidebar-item ausgabe">
