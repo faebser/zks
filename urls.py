@@ -20,3 +20,12 @@ if settings.DEBUG:
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve',  # NOQA
             {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
         ) + staticfiles_urlpatterns() + urlpatterns  # NOQA
+
+
+"""def show_urls(urllist, depth=1):
+    for entry in urllist:
+        print "  " * depth, entry.regex.pattern
+        if hasattr(entry, 'url_patterns'):
+            show_urls(entry.url_patterns, depth + 1)
+
+show_urls(urlpatterns)"""

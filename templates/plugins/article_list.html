@@ -4,7 +4,7 @@
             <div class="info">{{ article.date | date:"d.m.Y" }} von
                 {% for user in article.author.all %}
                     {% if user.last_name and user.first_name %}
-                    <a href="{[ url 'author' user.last_name user.first_name ]}">
+                    <a href="{[ url 'person' user.last_name user.first_name ]}">
                         {{ user.first_name }} {{ user.last_name }}
                     </a>
                     {% else %}

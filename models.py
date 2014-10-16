@@ -113,3 +113,11 @@ class Box(CMSPlugin):
 class BlogListWithPagination(CMSPlugin):
     amount = models.IntegerField(verbose_name=u'Anzahl', default=5)
 
+
+class AuthorListWithPagination(BlogListWithPagination):
+    pass
+
+
+class TagListWithPagination(BlogListWithPagination):
+    pass
+
