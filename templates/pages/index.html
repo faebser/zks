@@ -40,11 +40,13 @@
             </ul>
 		</nav>
 	</header>
-	<div id="content" role="main">
+
         {% block content %}
-            {% placeholder blog %}
+            <div id="content" role="main" class="blog">
+                {% placeholder blog %}
+            </div>
         {% endblock content %}
-	</div>
+
 	<aside id="sidebar">
 		<section class="sidebar-item ausgabe">
 			<h3>ZKS #9 — Out Now!</h3>

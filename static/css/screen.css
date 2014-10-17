@@ -48,16 +48,6 @@ Copyright (C) Swiss Typefaces Sàrl
     font-style: italic;
 }
 
-
-/*@font-face {
-    font-family: 'suisse-works';
-    src: url('fonts/SuisseWorks-Medium-WebTrial.eot?#iefix') format('embedded-opentype'),
-         url('fonts/SuisseWorks-Medium-WebTrial.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-}*/
-/*	Evt. Medium Schnitt */
-
 @font-face {
     font-family: 'suisse-works';
     src: url('fonts/SuisseWorks-Book-WebXL.eot?#iefix') format('embedded-opentype'),
@@ -65,7 +55,6 @@ Copyright (C) Swiss Typefaces Sàrl
     font-weight: bold;
     font-style: normal;
 }
-
 
 
 body {
@@ -159,8 +148,7 @@ h1 a {
 	line-height: 1;
 }
 
-div#content {
-	width: 710px;
+#content {
 	margin-left: 26px;
 	margin-bottom: 100px;
 	float: left;
@@ -168,7 +156,14 @@ div#content {
 	z-index: -1;
 }
 
-.blog-item,
+#content.blog,
+.article-wrapper,
+.header-wrapper,
+.detail .teaser-title {
+	width: 710px;
+}
+
+.onecol,
 .detail {
 	padding-top: 20px;
 	margin-bottom: 50px;
@@ -176,7 +171,7 @@ div#content {
 	position: relative;
 }
 
-.blog-item:after {
+.onecol:after {
     content: ".";
     display: block;
     clear: both;
@@ -213,7 +208,7 @@ div#content {
 	padding-left: 0;
 }
 
-.blog-item .teaser-title:before {
+.onecol .teaser-title:before {
 	border: 4px ridge #ccc;
 	content: " ";
 	width: 183px;
@@ -223,20 +218,6 @@ div#content {
 	left: -191px;
 	padding: 0 0 61px 0;
 }
-
-.blog-item.bgimg .teaser-title:before {
-	background: url("img/synthfest.jpg") no-repeat center center;
-}
-
-.blog-item.bgimg2 .teaser-title:before {
-	background: url("img/terre2.jpg") no-repeat center center;
-}
-
-
-.blog-item.bgimg .lead p:first-child:first-letter,
-.blog-item.bgimg2 .lead p:first-child:first-letter {
-	color: #fff
-} 
 
 .teaser-title h2 {
 	margin-bottom:0;
@@ -250,10 +231,9 @@ div#content {
 	border-right: 4px ridge #ccc;
 	padding-right: 25px;
 	padding-bottom: 2px;
-	font-weight: bold;
 }
 
-.blog-item.hasimg .lead {
+.onecol.hasimg .lead {
 	padding-bottom: 100px;
 }
 
@@ -261,7 +241,7 @@ div#content {
 	margin-bottom: 7px;
 }
 
-.blog-item .lead>*:first-child:first-letter,
+.onecol .lead>*:first-child:first-letter,
 .article-content>*:first-child:first-letter {
 	padding-left: 188px;
 	margin: 7px 188px 15px -188px;
@@ -276,7 +256,7 @@ div#content {
 	font-size: 1.5em;
 }
 
-.blog-item .img {
+.onecol .img {
 	float: left;
 	margin-left: 188px;
 	width: 495px;
@@ -307,12 +287,55 @@ div#content {
 	right: 0;
 }
 
-.article-wrapper {
+/*		Two Col */
+
+.twocol {
+	width: 345px;
 	float: left;
+	margin-right: 20px;
+	margin-bottom: 50px;
+	vertical-align: top;
+}
+
+.twocol:nth-child(2n) {
+    margin-left: -5px;
+	margin-right: 0;
+}
+
+.twocol:nth-child(odd) {
+    clear: left;
+}
+
+
+.twocol .teaser-title h2 {
+    font-size: 2em;
+}
+
+.twocol .teaser-title {
+	margin-left: -8px;
+	padding-left: 8px;
+}
+
+.twocol .img {
+    float: left;
+    width: 100%;
+}
+
+.twocol .lead {
+	padding-right: 15px;
+}
+
+.twocol .taglist {
+	max-width: 353px;
 }
 
 
 /*		Detail */
+
+.article-wrapper,
+.header-wrapper {
+	float: left;
+}
 
 .article-content {
 	margin-top: 60px;
@@ -346,6 +369,9 @@ div#content {
 	margin-right: 5px;
 	margin-top: 3px;	
 }
+
+
+/*	Content Styles		*/
 
 .interview {
 	text-indent: 94px;
@@ -412,7 +438,58 @@ sup, .anmerkung, .footnotes {
 	display: inline-block;
 }
 
+.img-slide {
+	border: 4px ridge #ccc;
+	text-align: right;
+	display: inline-block;
+	margin: 0 0 10px 0;
+	position: relative;
+	max-width: 100%
+}
 
+.img-caption {
+	position: absolute;
+	bottom: -17px;
+	left: 90px;
+	border: 4px ridge #ccc;
+	font-family: 'suisse', sans-serif;
+	font-size: 1.15em;
+	line-height: 1.07;
+}
+
+.img-caption div {
+	background-color: #fff;
+	padding: 3px 5px;
+}
+
+.img-slide img {
+	max-width: 100%;
+	max-height: 600px;
+	display: block;
+}
+
+.video {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.video iframe,
+.video object,
+.video embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sound {
+	margin-bottom: 5px;
+}
 
 
 /*
@@ -568,55 +645,6 @@ sup, .anmerkung, .footnotes {
 
 #search input:focus {
 	background-color: #fafafa !important;
-}
-
-
-.tt-dropdown-menu {
-	width: 100%;
-	margin-top: 4px;
-	display: block !important;
-} 
-
-.tt-hint {
-	color: #999;
-} 
-
-.tt-suggestion {
-	padding: 3px 7px;
-	background-color: #f5f5f5;
-}
-.tt-suggestion p {
-	margin: 0;
-}
-
-.tt-suggestion:nth-child(odd) {
-	-webkit-transform: skew(-10deg); 
-	-moz-transform: skew(-10deg); 
-	-o-transform: skew(-10deg); 
-	-ms-transform: skew(-10deg); 
-	transform: skew(-10deg);
-	-webkit-transform-origin: right top;
-	-moz-transform-origin: right top;
-	-ms-transform-origin: right top;
-	transform-origin: right top;
-}
-
-.tt-suggestion:nth-child(even) {
-	background-color: #eaeaea;
-	-webkit-transform: skew(10deg); 
-	-moz-transform: skew(10deg); 
-	-o-transform: skew(10deg); 
-	-ms-transform: skew(10deg); 
-	transform: skew(10deg);
-	-webkit-transform-origin: left bottom;
-	-moz-transform-origin: left bottom;
-	-ms-transform-origin: left bottom;
-	transform-origin: left bottom;
-}
-
-.tt-suggestion.tt-cursor {
-	background-color: #00ff00;
-	cursor: pointer;
 }
 
 

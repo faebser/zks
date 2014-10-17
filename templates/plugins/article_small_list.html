@@ -1,7 +1,7 @@
 {% load sekizai_tags %}
 
-{% for article in articles %}
-    <article id="blog-{{ article.pk }}" class="onecol blog-item{% if article.picBig %} hasimg{% endif %}{% if article.picTop %} bgimg2{% endif %}">
+{% for article in small-articles %}
+    <article id="blog-{{ article.pk }}" class="blog-item twocol">
         <header class="teaser-title">
             <div class="info">{{ article.date | date:"d.m.Y" }} von
                 {% for user in article.author.all %}
@@ -10,7 +10,7 @@
                         {{ user.first_name }} {{ user.last_name }}
                     </a>
                     {% else %}
-                        <a href="author/{{ user.username}}">{{ user.username }}</a>
+                    <a href="author/{{ user.username}}">{{ user.username }}</a>
                     {% endif %}
                 {% endfor %}
             </div>
@@ -20,14 +20,11 @@
         {% if article.picBig %}
             <div class="img"><img src="{{ article.picBig.url }}" alt=""></div>
         {% endif %}
-        {% if article.picTop %}
-            {% addtoblock "css" %}<style> #blog-{{ article.pk }} .teaser-title:before { background: url("{{ article.picTop.url }}") no-repeat center center; }</style>{% endaddtoblock %}
-        {% endif %}
         </div>
         <div class="taglist">
             <div>
             {% for tag in article.tags.all %}
-                <a href="{% url 'tag' tag.url %}">{{ tag.name }}</a>
+                <a href="{% url 'tag' tag.name|lower %}">{{ tag.name }}</a>
             {% endfor %}
             </div>
         </div>

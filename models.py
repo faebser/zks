@@ -9,6 +9,7 @@ from djangocms_text_ckeditor.fields import HTMLField  # html field
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import Truncator
 from django.utils.html import strip_tags
+from unidecode import unidecode
 import datetime
 
 
@@ -20,7 +21,13 @@ def replace_all(text, removables):
 
 class ArticleTags(models.Model):
     name = models.CharField(max_length=256, verbose_name=u'Name')
-    url = models.CharField(max_length=1024, verbose_name=u'Url', default=' ', editable=False)
+    url = models.CharField(max_length=1024, verbose_name=u'Url', editable=False)
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        self.url = unidecode(self.name.lower().replace(' ', '_'))
+        print self.url
+        super(ArticleTags, self).save()
 
     class Meta:
         verbose_name = u'Blog Tag'
@@ -112,6 +119,7 @@ class Box(CMSPlugin):
 
 class BlogListWithPagination(CMSPlugin):
     amount = models.IntegerField(verbose_name=u'Anzahl', default=5)
+    amountSmall = models.IntegerField(verbose_name=u'Anzahl zweispaltig', default=6)
 
 
 class AuthorListWithPagination(BlogListWithPagination):

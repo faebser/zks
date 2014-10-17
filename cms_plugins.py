@@ -41,15 +41,18 @@ class BlogListWithPaginationPlugin(CMSPluginBase):
         context['instance'] = instance
         context['placeholder'] = placeholder
         parameter = context['request'].GET.get('pagination', None)
+        total_amount = instance.amount + instance.amountSmall
         objects = None
         get_parameter = None
 
         # see https://plus.google.com/118309212962987618554/posts/Nc8xQPN9yFy
         # to exclude plugins from list
         objects = ArticleIntro.objects.all().exclude(placeholder__page__publisher_is_draft=False).order_by('date')
-        objects, get_parameter = pagination(objects, parameter, instance.amount)
+        objects = objects.exclude(placeholder__page=None)
+        objects, small_articles, get_parameter = pagination(objects, parameter, instance.amount, instance.amountSmall)
         context.update({
             'articles': objects,
+            'small-articles': small_articles,
             'pagination': get_parameter
         })
 

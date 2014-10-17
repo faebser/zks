@@ -2,5 +2,7 @@
 {% load cms_tags menu_tags sekizai_tags %}
 
 {% block content %}
-        {% include "plugins/article_list.html" %}
+        <div id="content" role="main" class="blog">
+            {% include "plugins/article_list.html" %}
+        </div>
 {% endblock content %}
