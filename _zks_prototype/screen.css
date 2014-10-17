@@ -284,25 +284,28 @@ h1 a {
 /*		Two Col */
 
 .twocol {
-	width: 345px;
+	width: 338px;
 	float: left;
-	margin-right: 20px;
+	margin-right: 34px;
 	margin-bottom: 50px;
 	vertical-align: top;
 }
 
-.twocol:nth-child(2n) {
-    margin-left: -5px;
-	margin-right: 0;
+.lastel {
+	margin-right: 0 !important;
 }
 
-.twocol:nth-child(odd) {
+.firstel {
     clear: left;
 }
 
+.twocol .info {
+	margin-top: 5px;
+}
 
 .twocol .teaser-title h2 {
     font-size: 2em;
+    padding: 3px 0;
 }
 
 .twocol .teaser-title {
@@ -311,17 +314,82 @@ h1 a {
 }
 
 .twocol .img {
-    float: left;
-    width: 100%;
+    border-right: 4px ridge #ccc;
+    padding-top: 5px;
+    margin-left: -8px;
+    text-align: right;
+}
+
+.twocol .img+.lead {
+	padding-top: 5px;
+}
+
+.twocol .img img {
+	max-height: 400px;
+	vertical-align: bottom;
 }
 
 .twocol .lead {
 	padding-right: 15px;
+	font-size: 1em;
 }
 
 .twocol .taglist {
 	max-width: 353px;
 }
+
+/*		Three Col */
+
+.threecol {
+	width: 222px;
+	float: left;
+	margin-right: 26px;
+	margin-bottom: 50px;
+	vertical-align: top;
+	border-right: 4px ridge #ccc;
+	border-top: 4px ridge #ccc;
+	position: relative;
+}
+
+.threecol.firstel {
+	margin-left: -8px;
+}
+
+.threecol .teaser-title {
+	margin-left: 0;
+	padding: 0 8px;
+	border: 0 none;
+}
+
+.threecol .teaser-title h2 {
+    font-size: 1.45em;
+    padding: 0;
+}
+
+.threecol .info {
+	margin-top: 5px;
+}
+
+.threecol .lead {
+	font-size: 1em;
+	border-right: 0 none;
+	padding: 0 8px;
+}
+
+.threecol .taglist {
+	margin: 0 -4px 0 0;
+}
+
+.threecol .img {
+    padding-top: 5px;
+}
+
+.threecol .img img {
+	max-height: 400px;
+	vertical-align: bottom;
+}
+
+
 
 
 /*		Detail */
