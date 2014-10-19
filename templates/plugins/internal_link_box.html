@@ -1,0 +1,14 @@
+{% load cms_tags %}
+
+<section class="sidebar-item link-list">
+    <h3>Interesting</h3>
+    <div class="sidebar-content">
+        <ul>
+            {% for plugin in instance.child_plugin_instances %}
+                <li>
+                    {% render_plugin plugin %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
