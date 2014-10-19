@@ -3,7 +3,7 @@ __author__ = 'faebser'
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext_lazy as _
 from djangocms_text_ckeditor.cms_plugins import TextPlugin
 from django.core.urlresolvers import reverse
@@ -11,7 +11,7 @@ from models import *
 from os import path
 from author_and_tags.views import pagination
 from models import ArticleCategory, ArticleTags, ArticleIntro, ExternalLink, ExternalLinkBox, InternalLink, \
-    InternalLinkBox, Ad, Box, BlogListWithPagination
+    InternalLinkBox, Ad, Box, BlogListWithPagination, YouTubeIframe, MixcloudIframe, Blockquote
 
 
 class PluginSettings():
@@ -34,7 +34,7 @@ class BlogListWithPaginationPlugin(CMSPluginBase):
     cache = False
     model = BlogListWithPagination
     module = ps.module
-    render_template = path.join(ps.templatePath, 'article_list.html')
+    render_template = path.join(ps.templatePath, 'article_list_onecol.html')
     name = _(u'Blog Liste')
 
     def render(self, context, instance, placeholder):
@@ -49,17 +49,64 @@ class BlogListWithPaginationPlugin(CMSPluginBase):
         # to exclude plugins from list
         objects = ArticleIntro.objects.all().exclude(placeholder__page__publisher_is_draft=False).order_by('date')
         objects = objects.exclude(placeholder__page=None)
-        objects, small_articles, get_parameter = pagination(objects, parameter, instance.amount, instance.amountSmall)
+        try:
+            onecol, twocol, threecol, get_parameter = pagination(objects, parameter, instance.amount, instance.amountSmall, instance.amountThreeCol)
+        except ObjectDoesNotExist:
+            onecol = None
+            twocol = None
+            threecol = None
+
         context.update({
-            'articles': objects,
-            'small-articles': small_articles,
+            'onecol': onecol,
+            'twocol': twocol,
+            'threcol': threecol,
             'pagination': get_parameter
         })
 
         return context
 
-
 plugin_pool.register_plugin(BlogListWithPaginationPlugin)
+
+
+class YoutubeIframePlugin(CMSPluginBase):
+    model = YouTubeIframe
+    module = ps.module
+    render_template = path.join(ps.templatePath, 'iframe.html')
+    name = _(u'Youtube Video')
+
+
+def render(self, context, instance, placeholder):
+        context['instance'] = instance
+        context['placeholder'] = placeholder
+
+#plugin_pool.register_plugin(YoutubeIframePlugin)
+
+
+class MixcloudIframePlugin(CMSPluginBase):
+    model = MixcloudIframe
+    module = ps.module
+    render_template = path.join(ps.templatePath, 'iframe.html')
+    name = _(u'Mixcloud')
+
+#plugin_pool.register_plugin(MixcloudIframePlugin)
+
+
+class IframePlugin(CMSPluginBase):
+    model = Iframe
+    module = ps.module
+    render_template = path.join(ps.templatePath, 'iframe.html')
+    name = _(u'Media Embed')
+
+plugin_pool.register_plugin(IframePlugin)
+
+
+class BlockquotePlugin(CMSPluginBase):
+    model = Blockquote
+    module = ps.module
+    render_template = path.join(ps.templatePath, 'blockquote.html')
+    name = _(u'Zitat')
+
+plugin_pool.register_plugin(BlockquotePlugin)
 
 '''class DefaultPlugin(TextPlugin):
     name = _(u"Text")

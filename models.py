@@ -11,6 +11,7 @@ from django.utils.text import Truncator
 from django.utils.html import strip_tags
 from unidecode import unidecode
 import datetime
+from django.utils.http import urlencode
 
 
 def replace_all(text, removables):
@@ -119,13 +120,50 @@ class Box(CMSPlugin):
 
 class BlogListWithPagination(CMSPlugin):
     amount = models.IntegerField(verbose_name=u'Anzahl', default=5)
-    amountSmall = models.IntegerField(verbose_name=u'Anzahl zweispaltig', default=6)
+    amountSmall = models.IntegerField(verbose_name=u'Anzahl zweispaltig', default=4)
+    amountThreeCol = models.IntegerField(verbose_name=u'Anzahl dreispaltig', default=6)
 
 
-class AuthorListWithPagination(BlogListWithPagination):
-    pass
+class Blockquote(CMSPlugin):
+    quote = HTMLField(verbose_name=u'Zitat')
+    author = models.CharField(max_length=1024, verbose_name=u'Autor')
+
+    class Meta:
+        verbose_name = u'Zitat'
+
+    def __unicode__(self):
+        return self.author + ': ' + Truncator(strip_tags(self.quote)).words(5, truncate='...')
 
 
-class TagListWithPagination(BlogListWithPagination):
-    pass
+class Iframe(CMSPlugin):
+    url = models.CharField(max_length=1024, verbose_name=u'Embed Url')
+    css = models.CharField(max_length=512, editable=False)
 
+    def __unicode__(self):
+        return self.url
+
+    def save(self, *args, **kwargs):
+        if 'youtube' in self.url:
+            self.css = u'video'
+        elif 'mixcloud' in self.url or 'soundcloud' in self.url:
+            self.css = u'sound'
+        else:
+            self.css = u'video'
+        super(Iframe, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = u"Einbetten"
+
+
+class YouTubeIframe(Iframe):
+    iframe_string = u'<iframe src="{}" frameborder="0" allowfullscreen=""></iframe>'
+
+    class Meta:
+        verbose_name = u'Youtube Media'
+
+
+class MixcloudIframe(Iframe):
+    iframe_string = u'<iframe width="100%" height="180" src="{}" frameborder="0"></iframe>'
+
+    class Meta:
+        verbose_name = u'Mixcloud Media'
