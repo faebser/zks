@@ -10,8 +10,13 @@ from django.core.urlresolvers import reverse
 from models import *
 from os import path
 from author_and_tags.views import pagination
-from models import ArticleCategory, ArticleTags, ArticleIntro, ExternalLink, ExternalLinkBox, InternalLink, \
-    InternalLinkBox, Ad, Box, BlogListWithPagination, YouTubeIframe, MixcloudIframe, Blockquote, SoundCloudIframe
+from models import (
+    ArticleCategory, ArticleTags, ArticleIntro,
+    ExternalLink, ExternalLinkBox, InternalLink,
+    InternalLinkBox, Ad, Box, BlogListWithPagination,
+    YouTubeIframe, MixcloudIframe, Blockquote, SoundCloudIframe,
+    Slider, SliderItem
+)
 
 
 class PluginSettings():
@@ -128,6 +133,66 @@ class ZksText(TextPlugin):
     name = _(u'Text')
 
 plugin_pool.register_plugin(ZksText)
+
+
+class SliderPlugin(CMSPluginBase):
+    module = ps.module
+    model = Slider
+    name = _(u'Slider')
+    render_template = path.join(ps.templatePath, 'slider.html')
+    allow_children = True
+    child_classes = ["SliderItemPlugin"]
+
+plugin_pool.register_plugin(SliderPlugin)
+
+
+class SliderItemPlugin(CMSPluginBase):
+    module = ps.module
+    model = SliderItem
+    name = _(u'Bild')
+    render_template = path.join(ps.templatePath, 'slider-item.html')
+
+plugin_pool.register_plugin(SliderItemPlugin)
+
+
+class InternalLinkBoxPlugin(CMSPluginBase):
+    module = ps.module
+    model = InternalLinkBox
+    name = _(u'Interesting (Link-Box)')
+    child_classes = ['InternalLinkPlugin']
+    allow_children = True
+    render_template = path.join(ps.templatePath, 'internal_link_box.html')
+
+plugin_pool.register_plugin(InternalLinkBoxPlugin)
+
+
+class ExternalLinkBoxPlugin(CMSPluginBase):
+    module = ps.module
+    model = ExternalLinkBox
+    name = _(u'Link zum Artikel (Link-Box)')
+    render_template = path.join(ps.templatePath, 'external_link_box.html')
+    allow_children = True
+    child_classes = ['ExternalLinkPlugin']
+
+plugin_pool.register_plugin(ExternalLinkBoxPlugin)
+
+
+class ExternalLinkPlugin(CMSPluginBase):
+    module = ps.module
+    model = ExternalLink
+    name = _(u'externer Link')
+    render_template = path.join(ps.templatePath, 'link.html')
+
+plugin_pool.register_plugin(ExternalLinkPlugin)
+
+
+class InternalLinkPlugin(CMSPluginBase):
+    module = ps.module
+    model = InternalLink
+    name = _(u'Interner Link')
+    render_template = path.join(ps.templatePath, 'link.html')
+
+plugin_pool.register_plugin(InternalLinkPlugin)
 
 '''class DefaultPlugin(TextPlugin):
     name = _(u"Text")

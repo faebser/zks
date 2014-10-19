@@ -180,6 +180,20 @@ class SoundCloudIframe(Iframe):
         verbose_name = u'Soundcloud Media'
 
 
+class Slider(CMSPlugin):
+
+    class Meta:
+        verbose_name = u'Slider'
+
+
+class SliderItem(CMSPlugin):
+    picture = models.ImageField(verbose_name=u'Bild', upload_to=CMSPlugin.get_media_path)
+    caption = models.CharField(max_length=512, blank=True, null=True)
+
+    class Meta:
+        verbose_name = u'Slider Item'
+
+
 @receiver(pre_save, sender=Iframe)
 def makeAPICall(sender, instance, **kwargs):
     # see https://github.com/panzi/oembedendpoints/blob/master/endpoints.json for enpoints
