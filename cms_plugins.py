@@ -11,7 +11,7 @@ from models import *
 from os import path
 from author_and_tags.views import pagination
 from models import ArticleCategory, ArticleTags, ArticleIntro, ExternalLink, ExternalLinkBox, InternalLink, \
-    InternalLinkBox, Ad, Box, BlogListWithPagination, YouTubeIframe, MixcloudIframe, Blockquote
+    InternalLinkBox, Ad, Box, BlogListWithPagination, YouTubeIframe, MixcloudIframe, Blockquote, SoundCloudIframe
 
 
 class PluginSettings():
@@ -72,14 +72,10 @@ class YoutubeIframePlugin(CMSPluginBase):
     model = YouTubeIframe
     module = ps.module
     render_template = path.join(ps.templatePath, 'iframe.html')
-    name = _(u'Youtube Video')
+    name = _(u'Youtube')
 
 
-def render(self, context, instance, placeholder):
-        context['instance'] = instance
-        context['placeholder'] = placeholder
-
-#plugin_pool.register_plugin(YoutubeIframePlugin)
+plugin_pool.register_plugin(YoutubeIframePlugin)
 
 
 class MixcloudIframePlugin(CMSPluginBase):
@@ -88,7 +84,16 @@ class MixcloudIframePlugin(CMSPluginBase):
     render_template = path.join(ps.templatePath, 'iframe.html')
     name = _(u'Mixcloud')
 
-#plugin_pool.register_plugin(MixcloudIframePlugin)
+plugin_pool.register_plugin(MixcloudIframePlugin)
+
+
+class SoundcloudIframePlugin(CMSPluginBase):
+    model = SoundCloudIframe
+    module = ps.module
+    render_template = path.join(ps.templatePath, 'iframe.html')
+    name = _(u'Soundcloud')
+
+plugin_pool.register_plugin(SoundcloudIframePlugin)
 
 
 class IframePlugin(CMSPluginBase):
@@ -97,7 +102,7 @@ class IframePlugin(CMSPluginBase):
     render_template = path.join(ps.templatePath, 'iframe.html')
     name = _(u'Media Embed')
 
-plugin_pool.register_plugin(IframePlugin)
+#plugin_pool.register_plugin(IframePlugin)
 
 
 class BlockquotePlugin(CMSPluginBase):
@@ -107,6 +112,22 @@ class BlockquotePlugin(CMSPluginBase):
     name = _(u'Zitat')
 
 plugin_pool.register_plugin(BlockquotePlugin)
+
+
+class InterviewText(TextPlugin):
+    module = ps.module
+    render_template = path.join(ps.templatePath, 'interview.html')
+    name = _(u'Interview')
+
+plugin_pool.register_plugin(InterviewText)
+
+
+class ZksText(TextPlugin):
+    module = ps.module
+    render_template = path.join(ps.templatePath, 'text.html')
+    name = _(u'Text')
+
+plugin_pool.register_plugin(ZksText)
 
 '''class DefaultPlugin(TextPlugin):
     name = _(u"Text")

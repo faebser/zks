@@ -11,7 +11,10 @@ from django.utils.text import Truncator
 from django.utils.html import strip_tags
 from unidecode import unidecode
 import datetime
+from requests import get as request
 from django.utils.http import urlencode
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 
 def replace_all(text, removables):
@@ -136,34 +139,81 @@ class Blockquote(CMSPlugin):
 
 
 class Iframe(CMSPlugin):
-    url = models.CharField(max_length=1024, verbose_name=u'Embed Url')
-    css = models.CharField(max_length=512, editable=False)
+    url = models.CharField(max_length=1024, verbose_name=u'Embed Url', default=u'')
+    #css = models.CharField(max_length=512, editable=False, default=u'video')
+    oembed_url = None
+    iframe = models.CharField(max_length=20148, editable=False, default='Fehler im Iframe')
 
     def __unicode__(self):
         return self.url
 
     def save(self, *args, **kwargs):
-        if 'youtube' in self.url:
-            self.css = u'video'
-        elif 'mixcloud' in self.url or 'soundcloud' in self.url:
-            self.css = u'sound'
-        else:
-            self.css = u'video'
+        print 'saving!'
         super(Iframe, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = u"Einbetten"
+        abstract = True
 
 
 class YouTubeIframe(Iframe):
-    iframe_string = u'<iframe src="{}" frameborder="0" allowfullscreen=""></iframe>'
+    oembed_url = 'http://www.youtube.com/oembed'
+    css = u'youtube'
 
     class Meta:
         verbose_name = u'Youtube Media'
 
 
 class MixcloudIframe(Iframe):
-    iframe_string = u'<iframe width="100%" height="180" src="{}" frameborder="0"></iframe>'
+    oembed_url = 'http://www.mixcloud.com/oembed/'
+    css = u'mixcloud'
 
     class Meta:
         verbose_name = u'Mixcloud Media'
+
+
+class SoundCloudIframe(Iframe):
+    oembed_url = 'https://soundcloud.com/oembed'
+    css = u'soundcloud'
+
+    class Meta:
+        verbose_name = u'Soundcloud Media'
+
+
+@receiver(pre_save, sender=Iframe)
+def makeAPICall(sender, instance, **kwargs):
+    # see https://github.com/panzi/oembedendpoints/blob/master/endpoints.json for enpoints
+    # http://oembed.com/ for doc
+    try:
+        obj = Iframe.objects.get(pk=instance.pk)
+    except Iframe.DoesNotExist:
+        instance.iframe = query_oembed(instance.oembed_url, instance.url)  # object is new
+    else:
+        if not obj.url == instance.url:  # Field has changed
+            instance.iframe = query_oembed(instance.oembed_url, instance.url)
+    pass
+
+
+def query_oembed(oembed_url, query_url):
+    """
+    see https://github.com/panzi/oembedendpoints/blob/master/endpoints.json for endpoints
+    http://oembed.com/ for doc
+
+    querys the ombed endpoint and returns a string containing a iframe ready to be put in a template
+
+    :param string oembed_url: Ombed Endpoint
+    :param string query_dict:
+    :return: string Iframe for Template
+    """
+    oembed_options = {
+        "format": "json",
+        'maxwidth': 710
+    }
+    oembed_options.update({
+        'url': query_url
+    })
+    if oembed_url is not None or oembed_url != 'default':
+        r = request(oembed_url + '?' + urlencode(oembed_options))
+        return r.json()['html']
+    else:
+        return None
