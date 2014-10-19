@@ -52,6 +52,45 @@ LANGUAGES = (
 
 CMS_PERMISSION = True
 
-CMS_PLACEHOLDER_CONF = {}
+CMS_PLACEHOLDER_CONF = {
+    'blog': {
+        'plugins': ['BlogListWithPaginationPlugin'],
+        'name': u'Blog Liste',
+        'limits': {
+            'global': 1
+        }
+    },
+    'intro': {
+        'plugins': ['ArticleIntroPlugin'],
+        'name': u'Blog Intro'
+    },
+    'content': {
+        'name': u'Inhalt',
+        'plugins': ['YoutubeIframePlugin', 'MixcloudIframePlugin', 'SoundcloudIframePlugin', 'BlockquotePlugin',
+                    'InterviewText', 'ZksText', 'SliderPlugin', 'SliderItemPlugin']
+    },
+    'internal-links': {
+        'name': u'Interne Links',
+        'plugins': ['InternalLinkBoxPlugin'],
+        'limits': {
+            'global': 1
+        }
+    },
+    'external-links': {
+        'name': u'Externe Links',
+        'plugins': ['ExternalLinkBoxPlugin'],
+        'limits': {
+            'global': 1
+        }
+    },
+    'ads': {
+        'name': u'Werbung',
+        'plugins': ['']
+    },
+    'footnotes': {
+        'name': u'Fussnoten',
+        'plugins': ['']
+    }
+}
 
 
