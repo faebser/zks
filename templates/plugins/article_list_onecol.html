@@ -27,7 +27,7 @@
         <div class="taglist">
             <div>
             {% for tag in article.tags.all %}
-                <a href="{% url 'tag' tag=tag.url %}">{{ tag.name }}</a>
+                <a href="{[ url 'tag' tag=tag.url ]}">{{ tag.name }}</a>
             {% endfor %}
             </div>
         </div>
