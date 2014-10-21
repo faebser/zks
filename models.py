@@ -204,10 +204,13 @@ def makeAPICall(sender, instance, **kwargs):
     print "stuff bla"
     try:
         obj = Iframe.objects.get(pk=instance.pk)
+        print 'obj: ' + str(obj)
     except Iframe.DoesNotExist:
+        print "object is new"
         instance.iframe = query_oembed(instance.oembed_url, instance.url)  # object is new
     else:
         if not obj.url == instance.url:  # Field has changed
+            print "field has changed"
             instance.iframe = query_oembed(instance.oembed_url, instance.url)
     pass
 
