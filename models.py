@@ -195,6 +195,9 @@ class SliderItem(CMSPlugin):
 
 
 @receiver(pre_save, sender=Iframe)
+@receiver(pre_save, sender=YouTubeIframe)
+@receiver(pre_save, sender=MixcloudIframe)
+@receiver(pre_save, sender=SoundCloudIframe)
 def makeAPICall(sender, instance, **kwargs):
     # see https://github.com/panzi/oembedendpoints/blob/master/endpoints.json for enpoints
     # http://oembed.com/ for doc
