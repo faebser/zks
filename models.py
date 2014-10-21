@@ -144,6 +144,10 @@ class Iframe(CMSPlugin):
     oembed_url = None
     iframe = models.CharField(max_length=20148, editable=False, default='Fehler im Iframe')
 
+    def save(self, no_signals=False, *args, **kwargs):
+        print 'saving!'
+        super(Iframe, self).save(no_signals=False, *args, **kwargs)
+
     def __unicode__(self):
         return self.url
 
