@@ -194,6 +194,7 @@ class SliderItem(CMSPlugin):
 def makeAPICall(sender, instance, **kwargs):
     # see https://github.com/panzi/oembedendpoints/blob/master/endpoints.json for enpoints
     # http://oembed.com/ for doc
+    print "stuff bla"
     try:
         obj = Iframe.objects.get(pk=instance.pk)
     except Iframe.DoesNotExist:
