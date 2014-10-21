@@ -147,10 +147,6 @@ class Iframe(CMSPlugin):
     def __unicode__(self):
         return self.url
 
-    def save(self, *args, **kwargs):
-        print 'saving!'
-        super(Iframe, self).save(*args, **kwargs)
-
     class Meta:
         verbose_name = u"Einbetten"
         abstract = True
@@ -226,8 +222,10 @@ def query_oembed(oembed_url, query_url):
     oembed_options.update({
         'url': query_url
     })
+    print 'omebed_url is ' + oembed_url + '?' + urlencode(oembed_options)
     if oembed_url is not None or oembed_url != 'default':
         r = request(oembed_url + '?' + urlencode(oembed_options))
+        print r
         return r.json()['html']
     else:
         return None
