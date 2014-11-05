@@ -202,10 +202,11 @@ def makeAPICall(sender, instance, **kwargs):
     # see https://github.com/panzi/oembedendpoints/blob/master/endpoints.json for enpoints
     # http://oembed.com/ for doc
     print "stuff bla"
+    print sender
     try:
-        obj = Iframe.objects.get(pk=instance.pk)
+        obj = sender.objects.get(pk=instance.pk)
         print 'obj: ' + str(obj)
-    except Iframe.DoesNotExist:
+    except sender.DoesNotExist:
         print "object is new"
         instance.iframe = query_oembed(instance.oembed_url, instance.url)  # object is new
     else:
