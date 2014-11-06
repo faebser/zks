@@ -1,78 +1,25 @@
 {% extends "index.html" %}
 {% load cms_tags menu_tags sekizai_tags %}
-
-<!DOCTYPE html>
-<html lang="de">
-<head>
-	<title>zweikommasieben</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">-->
-	<link rel="stylesheet" type="text/css" media="screen" href="normalize.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="screen.css">
-	<!--[if lt IE 9]>
-	<style>
-		.blog-item .lead > *:first-child:first-letter,
-		.article-content > *:first-child:first-letter {
-			letter-spacing: 0;
-		}
-	</style>
-	<![endif]-->
-	<!--[if lt IE 9]>
-	<script src="js/html5shiv.js"></script>
-	<![endif]-->
-</head>
-<body>
-<div id="page">
-	<header id="header" role="banner">
-		<nav id="nav" role="navigation">
-			<h1><a href="index.html" title="zweikommasieben Magazin">zweikommasieben<br>Magazin</a></h1>
-			<section id="meta">
-				<div id="lang">
-				<a href="index.html" title="Deutsch">Deutsch</a>, <a href="#" title="English">English</a>
-				</div>
-				<div id="search">
-				<input type="text" placeholder="Suche" id="s" value="" name="s" class="field">
-				</div>
-			</section>
-			<ul>
-				<li><a class="active" href="index.html" title="Blog">Blog</a></li>
-				<li><a href="#" title="Magazin">Magazin</a></li>
-				<li><a href="#" title="Events">Events</a></li>
-			</ul>
-		</nav>
-	</header>
-	<div id="content" role="main">
-        {% block content %}
-            <article class="detail">
-                <div class="header-wrapper">
-                    {% placeholder intro %}
+        
+{% block content %}
+    <div id="content" role="main">
+        <article class="detail">
+            <div class="header-wrapper">
+                {% placeholder intro %}
+            </div>
+        <div class="article-wrapper">
+            <div class="article-content">
+                {% placeholder content %}
+                <div class="footnotes">
+                    {% placeholder footnotes %}
                 </div>
-            <div class="article-wrapper">
-                <div class="article-content">
-                    {% placeholder content %}
-                    <div class="footnotes">
-                        {% placeholder footnotes %}
-                    </div>
-                </div>
-            </div> <!-- closing of article-wrapper inside of intro -->
-            <aside id="sidebar" class="sidebar-detail">
-                {% placeholder internal-links %}
-                {% placeholder external-links %}
-                {% placeholder ads %}
-            </aside>
-            </article>
-        {% endblock content %}
-	</div>
-
-</div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.nth-word.js"></script>
-<script>
-$(document).ready(function() {
-	var note = $(".detail .lead");
-	var cNode = note.text().split(' ').length-9;
-	note.nthWord(cNode+"n").addClass("initial");
-});
-</script>
-</body>
-</html>
+            </div>
+        </div> <!-- closing of article-wrapper inside of intro -->
+        <aside id="sidebar" class="sidebar-detail">
+            {% placeholder internal-links %}
+            {% placeholder external-links %}
+            {% placeholder ads %}
+        </aside>
+        </article>
+    </div>
+{% endblock content %}
