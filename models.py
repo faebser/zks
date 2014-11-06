@@ -46,7 +46,7 @@ class ArticleCategory(models.Model):
 
 class ArticleIntro(CMSPlugin):
     title = models.CharField(max_length=256, verbose_name=u'Titel')
-    author = models.ManyToManyField(User, verbose_name=u'Autor', limit_choices_to={'is_active': True, 'is_staff': True})
+    author = models.ManyToManyField(User, verbose_name=u'Autor')
     date = models.DateField(verbose_name=u'Datum', default=datetime.datetime.now())
     lead = HTMLField(verbose_name=u'Lead')
     tags = models.ManyToManyField(ArticleTags, verbose_name=u'Schlagworte')
