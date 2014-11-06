@@ -1,7 +1,7 @@
 {% load sekizai_tags %}
 
 {% for article in threecol %}
-    <article id="blog-{{ article.pk }}" class="blog-item twocol">
+    <article id="blog-{{ article.pk }}" class="blog-item threecol">
         <header class="teaser-title">
             <div class="info">{{ article.date | date:"d.m.Y" }} von
                 {% for user in article.author.all %}
