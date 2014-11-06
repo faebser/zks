@@ -13,7 +13,7 @@ from unidecode import unidecode
 import datetime
 from requests import get as request
 from django.utils.http import urlencode
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 
 
@@ -201,19 +201,13 @@ class SliderItem(CMSPlugin):
 def makeAPICall(sender, instance, **kwargs):
     # see https://github.com/panzi/oembedendpoints/blob/master/endpoints.json for enpoints
     # http://oembed.com/ for doc
-    print "stuff bla"
-    print sender
     try:
         obj = sender.objects.get(pk=instance.pk)
-        print 'obj: ' + str(obj)
     except sender.DoesNotExist:
-        print "object is new"
         instance.iframe = query_oembed(instance.oembed_url, instance.url)  # object is new
     else:
         if not obj.url == instance.url:  # Field has changed
-            print "field has changed"
             instance.iframe = query_oembed(instance.oembed_url, instance.url)
-    pass
 
 
 def query_oembed(oembed_url, query_url):
@@ -234,10 +228,8 @@ def query_oembed(oembed_url, query_url):
     oembed_options.update({
         'url': query_url
     })
-    print 'omebed_url is ' + oembed_url + '?' + urlencode(oembed_options)
     if oembed_url is not None or oembed_url != 'default':
         r = request(oembed_url + '?' + urlencode(oembed_options))
-        print r
         return r.json()['html']
     else:
         return None
