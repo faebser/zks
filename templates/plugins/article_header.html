@@ -13,7 +13,7 @@
         <h2>{{ instance.title }}</h2>
     </header>
     <div class="lead">{{ instance.lead | safe }}
-    {% if instance.picBig %}
+    {% if instance.picBig and isOnList %}
         <div class="img"><img src="{{ instance.picBig.url }}" alt=""></div>
     {% endif %}
     </div>

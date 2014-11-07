@@ -32,6 +32,13 @@ class ArticleIntroPlugin(CMSPluginBase):
     render_template = path.join(ps.templatePath, 'article_header.html')
     name = _(u'Blog Intro')
 
+    def render(self, context, instance, placeholder):
+        context['instance'] = instance
+        context['placeholder'] = placeholder
+        context['isOnList'] = False
+
+        return context
+
 plugin_pool.register_plugin(ArticleIntroPlugin)
 
 
