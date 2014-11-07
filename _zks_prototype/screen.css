@@ -1053,15 +1053,15 @@ nav ul li.selected a {
 	#nav ul {
 		font-size: 2em;
 		margin: 0 15px;
-		border: 4px ridge #ccc;
-		background-color: #fff;
+		border: 0 none;
 	}
 	
 	#nav ul li {
 		float: none;
 		border: 0 none;
-		border-top: 4px ridge #ccc;
 		display: block;
+		margin-bottom: 6px;
+		text-align: center;
 	}
 	
 	#nav ul li:first-child {
@@ -1071,7 +1071,15 @@ nav ul li.selected a {
 	#nav ul a {
 		text-transform: none;
 		display: block;
-		padding-left: 6px;
+		padding-left: 0;
+		border: 8px outset #c1c1c1;
+		background-color: #d1d1d1;
+		height: auto;
+		line-height: inherit;
+	}
+
+	#nav ul a.active, #nav ul a:hover {
+		border-style: inset;
 	}
 	
 	#content {

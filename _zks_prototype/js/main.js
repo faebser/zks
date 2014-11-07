@@ -3,9 +3,10 @@ $(document).ready(function() {
 		trigger = $("#mobile"),
 		note = $(".detail .lead"),
 		cNode = note.text().split(' ').length-9;
-		
-	note.nthWord(cNode+"n").addClass("dropcap-top");
 	
+	if(note.length) {
+		note.nthWord(cNode+"n").addClass("dropcap-top");
+	}
 	trigger.on("click", function(e) {
 		e.preventDefault();
 		$("body").toggleClass("nav-open");
