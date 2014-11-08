@@ -968,6 +968,10 @@ nav ul li.selected a {
 		text-transform: uppercase;
 	}
 	
+	.nav-open #mobile {
+		border-style: inset;
+	}
+	
 	h1 {
 		margin: 0;
 		float: none;
@@ -996,7 +1000,7 @@ nav ul li.selected a {
 		overflow-y: hidden;
 		pointer-events: none;
 		position: fixed;
-		top: 75px;
+		top: 70px;
 		left: 0;
 		right: 0;
 		bottom: 0;
@@ -1028,7 +1032,7 @@ nav ul li.selected a {
 	#meta {
 		float: none;
 		height: auto;
-		margin: 0 15px 25px;
+		margin: 0 15px 20px;
 		width: auto;
 		border: 0 none;
 	}
@@ -1071,15 +1075,17 @@ nav ul li.selected a {
 	#nav ul a {
 		text-transform: none;
 		display: block;
-		padding-left: 0;
+		padding: 0;
 		border: 8px outset #c1c1c1;
 		background-color: #d1d1d1;
-		height: auto;
-		line-height: inherit;
+		height: 60px;
+		line-height: 45px;
 	}
 
 	#nav ul a.active, #nav ul a:hover {
 		border-style: inset;
+		line-height: 49px;
+		padding-left: 4px;
 	}
 	
 	#content {
@@ -1350,3 +1356,21 @@ nav ul li.selected a {
 	}
 }
 
+@media only screen and (max-height:480px) and (orientation: landscape) {
+	
+	.nav-open {
+		overflow: auto;
+		position: static;
+		width: auto;
+	}
+	
+	#nav-wrapper,
+	.nav-open #nav-wrapper {
+		display: none;
+	}
+	
+	#mobile {
+		display: none;
+	}
+
+}
