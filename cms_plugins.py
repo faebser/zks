@@ -19,6 +19,7 @@ from models import (
 )
 
 
+
 class PluginSettings():
     templatePath = path.join("plugins")
     module = u'ZKS'

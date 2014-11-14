@@ -15,7 +15,7 @@ from requests import get as request
 from django.utils.http import urlencode
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
-
+import html5lib
 
 def replace_all(text, removables):
     for i, j in removables.iteritems():
@@ -53,6 +53,25 @@ class ArticleIntro(CMSPlugin):
     picBig = models.ImageField(upload_to=CMSPlugin.get_media_path, verbose_name=u'unteres Bild', blank=True, null=True)
     picTop = models.ImageField(upload_to=CMSPlugin.get_media_path, verbose_name=u'Bild oben, im Kasten', blank=True, null=True)
     isPublic = models.BooleanField(editable=False, default=False)
+
+    def save(self, *args, **kwargs):
+        tree = html5lib.getTreeBuilder('dom')
+        parser = html5lib.HTMLParser(tree=tree)
+        dom = parser.parse(self.lead)
+        if len(dom.getElementsByTagName('span')) == 0:
+            element = dom.getElementsByTagName('p')[0]
+            value = element.firstChild.nodeValue
+            txt = dom.createTextNode(value[1:len(value)])
+            dropcap = dom.createTextNode(value[0])
+            span = dom.createElement('span')
+            span.appendChild(dropcap)
+            span.setAttribute('class', 'dropcap')
+            element.childNodes[0] = span
+            element.appendChild(txt)
+            print element.toxml()
+            self.lead = element.toxml()
+        super(ArticleIntro, self).save(self, *args, **kwargs)
+
 
     class Meta:
         verbose_name = u'Article'
@@ -144,9 +163,8 @@ class Iframe(CMSPlugin):
     oembed_url = None
     iframe = models.CharField(max_length=20148, editable=False, default='Fehler im Iframe')
 
-    def save(self, no_signals=False, *args, **kwargs):
-        print 'saving!'
-        super(Iframe, self).save(no_signals=False, *args, **kwargs)
+    #def save(self, no_signals=False, *args, **kwargs):
+     #   super(Iframe, self).save(no_signals=False, *args, **kwargs)
 
     def __unicode__(self):
         return self.url
