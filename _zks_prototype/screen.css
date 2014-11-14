@@ -399,6 +399,10 @@ h1 a {
 
 /*		Detail */
 
+.lead a, .article-content a {
+    text-decoration: underline;
+}
+
 .article-wrapper {
 	float: left;
 }
@@ -921,8 +925,113 @@ nav ul li.selected a {
 }
 
 
-@media only screen and (max-width:1000px){
+@media only screen and (max-width:970px){
+	#page {
+		width: 750px;
+	}
+	
+	#header {
+		padding-left: 180px;
+	}
+	
+	#nav, #nav:before {
+	    width: 563px;
+	}
+	
+	h1 {
+	    margin-left: -193px;
+	}
+	
+	#content {
+		width: 525px;
+		margin-left: 15px;
+	}
+	
+	.onecol .teaser-title:before {
+		width: 162px;
+		left: -170px;
+	}
+	
+	.onecol .teaser-title {
+		margin-left: 160px;
+	}
+	
+	.onecol .teaser-title h2 {
+		padding-bottom: 5px;
+		padding-top: 5px;
+	}
+	
+	.onecol .img {
+	    margin-left: 60px;
+	    width: 461px;
+	}
+	
+	.twocol {
+		width: 245px;
+	}
+	
+	.threecol {
+		width: 167px;
+		margin-right: 15px;
+	}
+	
+	.detail .info {
+	    margin-left: 0;
+	}
+	
+	.taglist {
+		max-width: 362px;
+	}
+	
+	.dropcap-top:before,
+	.article-content:before {
+		width: 164px;
+	}
 
+	.dropcap {
+		width: 162px;
+	}
+	
+	.blog-item .dropcap {
+		width: 166px;
+	}
+
+	
+	#sidebar {
+		margin-left: 15px;
+	}
+	
+	.interview,
+	blockquote + .interview {
+		text-indent: 60px;
+	}
+	
+	blockquote {
+		margin-bottom: 5px;
+		margin-right: 0;
+		width: auto;
+	}
+	
+	.footnotes li {
+		margin-left: 60px;
+	}
+	
+	.footnotes .nr {
+		margin-left: -60px;
+		width: 60px;
+	}
+	
+	.img-slide:after {
+		left: 56px;
+	}
+	
+	.img-slide.imgactive:after {
+		left: 60px;
+	}
+	
+	.slider .img-slide {
+		padding: 20px 25px 0;
+	}
 
 
 }
@@ -1266,13 +1375,7 @@ nav ul li.selected a {
 	blockquote + .interview {
 		text-indent: 40px;
 	}
-	
-	blockquote {
-		margin-bottom: 5px;
-		margin-right: 0;
-		width: auto;
-	}
-	
+		
 	.footnotes li {
 		margin-left: 40px;
 	}
@@ -1284,14 +1387,15 @@ nav ul li.selected a {
 		
 	#sidebar,
 	#sidebar.sidebar-detail {
-		margin: 0 15px 2em;
+		margin: 0 auto 2em;
 		float: none;
 		width: auto;
+		max-width: 280px;
 		clear: both;
 	}
 	
 	.ad .sidebar-content {
-		border: 0 none;
+	/*	border: 0 none; */
 	}
 	
 	.sidebar-item h3 {
@@ -1300,6 +1404,7 @@ nav ul li.selected a {
 	
 	.link-list .sidebar-content li a {
 		padding: 3px 10px;
+		background-color: #fff
 	}
 	
 	.img-slide {
@@ -1324,7 +1429,7 @@ nav ul li.selected a {
 	}
 
 	.img-slide.imgactive:after {
-		left: 38px;
+		left: 65px;
 	}
 
 	
@@ -1358,19 +1463,23 @@ nav ul li.selected a {
 
 @media only screen and (max-height:480px) and (orientation: landscape) {
 	
-	.nav-open {
-		overflow: auto;
-		position: static;
-		width: auto;
+	#nav-wrapper {
+		top: 50px;
+	}
+		
+	#nav ul li {
+		float: left;
+		margin-right: 10px;
+
 	}
 	
-	#nav-wrapper,
-	.nav-open #nav-wrapper {
-		display: none;
+	#nav ul a {
+		padding: 0 10px;
 	}
 	
-	#mobile {
-		display: none;
+	#nav ul a.active, #nav ul a:hover {
+		padding: 0 10px;
 	}
+
 
 }
