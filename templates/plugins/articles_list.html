@@ -1,0 +1,35 @@
+{% load sekizai_tags %}
+
+{% for article in articles %}
+    <article id="blog-{{ article.item.pk }}" class="blog-item {{ article.css }}">
+        <header class="teaser-title">
+            <div class="info">{{ article.item.date | date:"d.m.Y" }} von
+                {% for user in article.item.author.all %}
+                    {% if user.last_name and user.first_name %}
+                    <a href="{% url 'person' user.first_name|lower user.last_name|lower %}">
+                        {{ user.first_name }} {{ user.last_name }}
+                    </a>
+                    {% else %}
+                        <a href="author/{{ user.username}}">{{ user.username }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <h2><a href="{{ article.item.page.get_absolute_url }}" title="{{ article.item.title }}">{{ article.item.title }}</a></h2>
+        </header>
+        <div class="lead">{{ article.item.lead | safe }}
+        {% if article.item.picBig %}
+            <div class="img"><img src="{{ article.item.picBig.url }}" alt=""></div>
+        {% endif %}
+        {% if article.item.picTop %}
+            {% addtoblock "css" %}<style> #blog-{{ article.item.pk }} .teaser-title:before { background: url("{{ article.item.picTop.url }}") no-repeat center center; }</style>{% endaddtoblock %}
+        {% endif %}
+        </div>
+        <div class="taglist">
+            <div>
+            {% for tag in article.item.tags.all %}
+                <a href="{% url 'tag' tag.url %}">{{ tag.name }}</a>
+            {% endfor %}
+            </div>
+        </div>
+    </article>
+{% endfor %}

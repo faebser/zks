@@ -46,7 +46,7 @@ class BlogListWithPaginationPlugin(CMSPluginBase):
     cache = False
     model = BlogListWithPagination
     module = ps.module
-    render_template = path.join(ps.templatePath, 'article_list_onecol.html')
+    render_template = path.join(ps.templatePath, 'articles_list.html')
     name = _(u'Blog Liste')
 
     def render(self, context, instance, placeholder):
@@ -56,22 +56,19 @@ class BlogListWithPaginationPlugin(CMSPluginBase):
         total_amount = instance.amount + instance.amountSmall
         objects = None
         get_parameter = None
+        context['isOnList'] = True
 
         # see https://plus.google.com/118309212962987618554/posts/Nc8xQPN9yFy
         # to exclude plugins from list
         objects = ArticleIntro.objects.all().exclude(placeholder__page__publisher_is_draft=False).order_by('date')
         objects = objects.exclude(placeholder__page=None)
         try:
-            onecol, twocol, threecol, get_parameter = pagination(objects, parameter, instance.amount, instance.amountSmall, instance.amountThreeCol)
+            articles, get_parameter = pagination(objects, parameter, instance.amount, instance.amountSmall, instance.amountThreeCol)
         except ObjectDoesNotExist:
-            onecol = None
-            twocol = None
-            threecol = None
+            articles = None
 
         context.update({
-            'onecol': onecol,
-            'twocol': twocol,
-            'threcol': threecol,
+            'articles': articles,
             'pagination': get_parameter
         })
 
