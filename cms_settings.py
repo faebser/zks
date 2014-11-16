@@ -73,14 +73,14 @@ CMS_PLACEHOLDER_CONF = {
         'name': u'Interne Links',
         'plugins': ['InternalLinkBoxPlugin'],
         'limits': {
-            'global': 1
+            'InternalLinkBoxPlugin': 1
         }
     },
     'external-links': {
         'name': u'Externe Links',
         'plugins': ['ExternalLinkBoxPlugin'],
         'limits': {
-            'global': 1
+            'ExternalLinkBoxPlugin': 1
         }
     },
     'ads': {
