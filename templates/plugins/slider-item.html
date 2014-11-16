@@ -1,8 +1,3 @@
-<div class="img-slide">
-    <img src="{{ instance.picture.file.url }}" alt="{{ instance.caption }}">
-    {% if instance.caption %}
-    <div class="img-caption">
-        <div>{{ instance.caption }}</div>
-    </div>
-    {% endif %}
+<div class="img-slide" {% if instance.caption %} data-caption="{{ instance.caption }}" {% endif %}>
+    <img src="{{ instance.picture.file.url }}" alt="{{ instance.caption }}" >
 </div>
