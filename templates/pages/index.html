@@ -26,18 +26,21 @@
 <div id="page">
 	<header id="header" role="banner">
 		<nav id="nav" role="navigation">
-			<h1><a href="index.html" title="zweikommasieben Magazin">zweikommasieben<br>Magazin</a></h1>
-			<section id="meta">
-				<div id="lang">
-				<a href="index.html" title="Deutsch">Deutsch</a>, <a href="#" title="English">English</a>
-				</div>
-				<div id="search">
-				<input type="text" placeholder="Suche" id="s" value="" name="s" class="field">
-				</div>
-			</section>
-            <ul>
-                {% show_menu 1 %}
-            </ul>
+            <button id="mobile">Menu</button>
+			<h1><a href="/" title="zweikommasieben Magazin">zweikommasieben<br>Magazin</a></h1>
+            <div id="nav-wrapper">
+                <section id="meta">
+                    <div id="lang">
+                    <a href="index.html" title="Deutsch">Deutsch</a>, <a href="#" title="English">English</a>
+                    </div>
+                    <div id="search">
+                    <input type="text" placeholder="Suche" id="s" value="" name="s" class="field">
+                    </div>
+                </section>
+                <ul>
+                    {% show_menu 1 %}
+                </ul>
+            </div>
 		</nav>
 	</header>
 
