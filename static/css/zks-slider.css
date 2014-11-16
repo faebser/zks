@@ -1,0 +1,22 @@
+
+.img-slide:after {
+	left: 36px;
+}
+
+.slider {
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+	background-color: #f5f5f5;
+}
+
+.slider .img-slide {
+	width: 100%;
+}
+
+.slider .img-slide:after {
+	left: 40px;
+}
+
+.slider-nav {
+	display: none
+}

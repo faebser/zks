@@ -1,5 +1,6 @@
-{% load cms_tags %}
+{% load cms_tags sekizai_tags %}
 
+{% addtoblock "css" %}<link rel="stylesheet" href="{{ STATIC_URL }}css/zks-slider.css">{% endaddtoblock %}
 <div class="slider">
     {% for plugin in instance.child_plugin_instances %}
 
