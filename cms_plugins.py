@@ -188,6 +188,13 @@ class ExternalLinkPlugin(CMSPluginBase):
     name = _(u'externer Link')
     render_template = path.join(ps.templatePath, 'link.html')
 
+    def render(self, context, instance, placeholder):
+        context['instance'] = instance
+        context['placeholder'] = placeholder
+        context['url'] = instance.href
+
+        return context
+
 plugin_pool.register_plugin(ExternalLinkPlugin)
 
 
@@ -196,6 +203,13 @@ class InternalLinkPlugin(CMSPluginBase):
     model = InternalLink
     name = _(u'Interner Link')
     render_template = path.join(ps.templatePath, 'link.html')
+
+    def render(self, context, instance, placeholder):
+        context['instance'] = instance
+        context['placeholder'] = placeholder
+        context['url'] = instance.href.get_absolute_url()
+
+        return context
 
 plugin_pool.register_plugin(InternalLinkPlugin)
 
