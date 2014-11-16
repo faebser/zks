@@ -67,7 +67,7 @@ CMS_PLACEHOLDER_CONF = {
     'content': {
         'name': u'Inhalt',
         'plugins': ['YoutubeIframePlugin', 'MixcloudIframePlugin', 'SoundcloudIframePlugin', 'BlockquotePlugin',
-                    'InterviewText', 'ZksText', 'SliderPlugin', 'SliderItemPlugin']
+                    'InterviewText', 'ZksText', 'SliderPlugin', 'SliderItemPlugin', 'FileTestPlugin']
     },
     'internal-links': {
         'name': u'Interne Links',

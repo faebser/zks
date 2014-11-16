@@ -14,7 +14,7 @@
     </header>
     <div class="lead">{{ instance.lead | safe }}
     {% if instance.picBig and isOnList %}
-        <div class="img"><img src="{{ instance.picBig.url }}" alt=""></div>
+        <div class="img"><img src="{{ instance.picBig.file.url }}" alt=""></div>
     {% endif %}
     </div>
     <div class="taglist">

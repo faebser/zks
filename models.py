@@ -6,6 +6,7 @@ from cms.models import Page
 from django.contrib.auth.models import User
 from cms.models.pluginmodel import CMSPlugin  # normal cms-plugin
 from djangocms_text_ckeditor.fields import HTMLField  # html field
+from djangocms_text_ckeditor.models import AbstractText
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import Truncator
 from django.utils.html import strip_tags
@@ -16,6 +17,8 @@ from django.utils.http import urlencode
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 import html5lib
+from media_tree.fields import ImageFileNodeForeignKey
+
 
 def replace_all(text, removables):
     for i, j in removables.iteritems():
@@ -50,8 +53,8 @@ class ArticleIntro(CMSPlugin):
     date = models.DateField(verbose_name=u'Datum', default=datetime.datetime.now())
     lead = HTMLField(verbose_name=u'Lead')
     tags = models.ManyToManyField(ArticleTags, verbose_name=u'Schlagworte')
-    picBig = models.ImageField(upload_to=CMSPlugin.get_media_path, verbose_name=u'unteres Bild', blank=True, null=True)
-    picTop = models.ImageField(upload_to=CMSPlugin.get_media_path, verbose_name=u'Bild oben, im Kasten', blank=True, null=True)
+    picBig = ImageFileNodeForeignKey(verbose_name=u'unteres Bild', blank=True, null=True, related_name='picture_big')
+    picTop = ImageFileNodeForeignKey(verbose_name=u'Bild oben, im Kasten', blank=True, null=True, related_name='picture_top')
     isPublic = models.BooleanField(editable=False, default=False)
 
     def save(self, *args, **kwargs):
@@ -68,7 +71,6 @@ class ArticleIntro(CMSPlugin):
             span.setAttribute('class', 'dropcap')
             element.childNodes[0] = span
             element.appendChild(txt)
-            print element.toxml()
             self.lead = element.toxml()
         super(ArticleIntro, self).save(self, *args, **kwargs)
 
@@ -121,7 +123,7 @@ class ExternalLink(CMSPlugin):
 
 
 class Ad(CMSPlugin):
-    image = models.ImageField(verbose_name=u'Bild', upload_to=CMSPlugin.get_media_path)
+    image = ImageFileNodeForeignKey(verbose_name=u'Bild')
     title = models.CharField(max_length=512, verbose_name=u'Titel')
     href = models.URLField(verbose_name=u'Link')
     target = models.CharField(verbose_name=u'Öffnen in', blank=True, default=("_blank", u"gleichem Fenster"), max_length=100, choices=((
@@ -205,7 +207,7 @@ class Slider(CMSPlugin):
 
 
 class SliderItem(CMSPlugin):
-    picture = models.ImageField(verbose_name=u'Bild', upload_to=CMSPlugin.get_media_path)
+    picture = ImageFileNodeForeignKey(verbose_name=u'Bild')
     caption = models.CharField(max_length=512, blank=True, null=True)
 
     class Meta:

@@ -18,16 +18,16 @@
         </header>
         <div class="lead">{{ article.item.lead | safe }}
         {% if article.item.picBig %}
-            <div class="img"><img src="{{ article.item.picBig.url }}" alt=""></div>
+            <div class="img"><img src="{{ article.item.picBig.file.url }}" alt=""></div>
         {% endif %}
         {% if article.item.picTop %}
-            {% addtoblock "css" %}<style> #blog-{{ article.item.pk }} .teaser-title:before { background: url("{{ article.item.picTop.url }}") no-repeat center center; }</style>{% endaddtoblock %}
+            {% addtoblock "css" %}<style> #blog-{{ article.item.pk }} .teaser-title:before { background: url("{{ article.item.picTop.file.url }}") no-repeat center center; }</style>{% endaddtoblock %}
         {% endif %}
         </div>
         <div class="taglist">
             <div>
             {% for tag in article.item.tags.all %}
-                <a href="{% url 'tag' tag.url %}">{{ tag.name }}</a>
+                <a href="{[ url 'tag' tag.url ]}">{{ tag.name }}</a>
             {% endfor %}
             </div>
         </div>
