@@ -33,7 +33,6 @@ class ArticleTags(models.Model):
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         self.url = unidecode(self.name.lower().replace(' ', '_'))
-        print self.url
         super(ArticleTags, self).save()
 
     class Meta:

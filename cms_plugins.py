@@ -213,6 +213,16 @@ class InternalLinkPlugin(CMSPluginBase):
 
 plugin_pool.register_plugin(InternalLinkPlugin)
 
+
+class FootnotesBoxPlugin(CMSPluginBase):
+    module = ps.module
+    name = _('Footnotes')
+    render_template = path.join(ps.templatePath, 'footnotes_box.html')
+    allow_children = True
+    child_classes = ['ZksText']
+
+plugin_pool.register_plugin(FootnotesBoxPlugin)
+
 '''class DefaultPlugin(TextPlugin):
     name = _(u"Text")
     module = ps.module

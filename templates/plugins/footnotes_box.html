@@ -1,0 +1,11 @@
+{% load cms_tags %}
+<div class="footnotes">
+    <ul>
+    {% for plugin in instance.child_plugin_instances %}
+        <li>
+            <span class="nr">[{{ forloop.counter }}] </span>
+            {% render_plugin plugin %}
+        </li>
+    {% endfor %}
+    </ul>
+</div>

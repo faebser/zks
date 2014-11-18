@@ -89,8 +89,6 @@ CMS_PLACEHOLDER_CONF = {
     },
     'footnotes': {
         'name': u'Fussnoten',
-        'plugins': ['']
+        'plugins': ['FootnotesBoxPlugin']
     }
 }
-
-
