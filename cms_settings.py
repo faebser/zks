@@ -49,6 +49,17 @@ LANGUAGES = (
     ('en', gettext('en')),
 )
 
+CKEDITOR_SETTINGS = {
+    'language': '{{ language }}',
+    'toolbar_CMS': [
+        ['Undo', 'Redo'],
+        ['cmsplugins', '-', 'ShowBlocks'],
+        ['Styles'],
+        ['Source'],
+    ],
+    'skin': 'moono',
+    'stylesSet': [ {'name': 'Anmerkung', 'element': 'span',  'attributes': {'class': 'anmerkung'}}]
+}
 
 CMS_PERMISSION = True
 
