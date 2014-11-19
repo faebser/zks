@@ -72,6 +72,7 @@
 		
 </div>
 {% render_block "js" %}
-{% addtoblock "js" %}<link rel="stylesheet" href="{{ STATIC_URL }}js/main.js">{% endaddtoblock %}
+{% addtoblock "js" %}<script src="{{ STATIC_URL }}js/vendor/jquery-1.11.1.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script src="{{ STATIC_URL }}js/main.js"></script>{% endaddtoblock %}
 </body>
 </html>
